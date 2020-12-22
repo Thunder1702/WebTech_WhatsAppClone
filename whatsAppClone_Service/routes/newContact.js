@@ -8,7 +8,6 @@ let db = getDb();
 router.post('/' , (req,res) => {
     let contact = req.body;
     
-
     checkValidity(contact).then(()=>{
         db.query("INSERT INTO contact VALUES ($1,$2,$3,$4,$5);",[contact.id,contact.first_name,contact.last_name,contact.email,contact.phone_number]).then(data=>{
             res.status(200).json({message: "Added row"});

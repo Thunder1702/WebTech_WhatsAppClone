@@ -12,6 +12,7 @@ app.use(bodyParser.json());
 const newContact = require('./routes/newContact');
 const deleteContact = require('./routes/deleteContact');
 const editContact = require('./routes/editContact');
+const getContacts = require('./routes/getContacts');
 //Eventuel in eine route --> Message und dort ob GET oder POST Befehl kommt
 const sendMessage = require('./routes/sendMessage');
 const getMessage = require('./routes/getMessage');
@@ -20,6 +21,7 @@ const uploadPhotot = require('./routes/uploadPhoto');
 app.use('/contacts/newContact', newContact);
 app.use('/contacts/deleteContact', deleteContact);
 app.use('/contacts/editContact', editContact);
+app.use('/contacts/getContacts', getContacts);
 app.use('/mainChat/sendMessage', sendMessage);
 app.use('/mainChat/getMessage', getMessage);
 app.use('/mainChat/uploadPhoto', uploadPhotot);

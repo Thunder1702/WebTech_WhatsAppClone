@@ -2,7 +2,7 @@
     "database": {
         "host": "localhost",
         "user": "gallery_root",
-        "password": "Lari+Tanja1702",
+        "password": "password",
         "db": "WhatsApp"
     },
     "server": {

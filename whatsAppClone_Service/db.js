@@ -17,9 +17,10 @@ let initDb = new Promise((resolve, reject) => {
     client.connect((error) => {
         if (error) {
             reject();
-        }
-        resolve();
+        }else{
+            resolve();
         console.log("Database connected...");
+        }
     }) 
 });
 

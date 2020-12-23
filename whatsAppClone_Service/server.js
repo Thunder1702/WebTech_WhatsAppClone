@@ -18,6 +18,7 @@ const sendMessage = require('./routes/sendMessage');
 const getMessage = require('./routes/getMessage');
 const getMessages = require('./routes/getMessages.js');
 const uploadPhotot = require('./routes/uploadPhoto');
+const getPhotos = require('./routes/getPhotos');
 
 app.use('/contacts/newContact', newContact);
 app.use('/contacts/deleteContact', deleteContact);
@@ -27,6 +28,7 @@ app.use('/mainChat/sendMessage', sendMessage);
 app.use('/mainChat/getMessage', getMessage);
 app.use('/mainChat/getMessages', getMessages);
 app.use('/mainChat/uploadPhoto', uploadPhotot);
+app.use('/mainChat/getPhotos', getPhotos);
 
 
 app.use("/", (req, res) => {

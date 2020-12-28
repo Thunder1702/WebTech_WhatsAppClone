@@ -1,1 +1,31 @@
-<p>profile works!</p>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<div id="upperborder">
+    <h1>Profile and status</h1>
+    <mat-icon>keyboard_arrow_left</mat-icon>
+</div>
+<div id="profilephoto">
+    <br>
+    <br>
+    <br>
+    <label for="files" class="btn">
+        <img id="myImg" src="https://upload.wikimedia.org/wikipedia/commons/8/89/Portrait_Placeholder.png" height=150
+            width=150>
+        <mat-icon id="changeid">border_color</mat-icon>
+    </label>
+    <input id="files" style="visibility:hidden;" type="file">
+    <br>
+
+</div>
+<br>
+<div class="div-border">
+    <mat-form-field class="example-form-field">
+        <mat-label>Your name</mat-label>
+        <input matInput type="text" >
+    </mat-form-field>
+</div>
+<div class="div-border">
+    <mat-form-field class="example-form-field">
+        <mat-label>Your status</mat-label>
+        <input matInput type="text" [(ngModel)]="value">
+    </mat-form-field>
+</div>

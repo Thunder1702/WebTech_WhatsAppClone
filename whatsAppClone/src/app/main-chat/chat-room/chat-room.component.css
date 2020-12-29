@@ -1,0 +1,46 @@
+.chat_area{
+    padding: 30px;
+}
+
+.chat_area_message{
+    position: relative;
+    width: fit-content;
+    max-width: 400px;
+    background-color: #f6f2f2;
+    margin: 3rem 0;
+    padding: 10px 10px;
+    border-radius: 10px;
+}
+
+.chat_area_message:first-child{
+    margin-top: 2rem;
+}
+
+.chat_area_message_text{
+    font-size: small;
+    max-width: inherit;
+}
+
+.chat_area_message_name{
+    position: absolute;
+    top: -20px;
+    left: 0;
+    font-size: small;
+    font-weight: bold;
+    width: 200px;
+}
+
+.chat_area_message_time{
+    position: relative;
+    right: 0;
+    bottom: 0;
+    margin-left: 10px;
+    font-size: x-small;
+    color: darkgray;
+
+}
+
+.chat_area_message-owner{
+    margin-left: auto;
+    background-color: #DCF8C6;
+}

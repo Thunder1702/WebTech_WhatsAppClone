@@ -14,6 +14,9 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { TextFieldModule } from '@angular/cdk/text-field';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule} from '@angular/forms';
+import { ChatRoomComponent } from './main-chat/chat-room/chat-room.component';
+import { SidebarContentComponent } from './sidebar/sidebar-content/sidebar-content.component';
+
 
 @NgModule({
   declarations: [
@@ -23,7 +26,10 @@ import { FormsModule} from '@angular/forms';
     ContactListComponent,
     LoginComponent,
     SidebarComponent,
-    ChatareaComponent
+    ChatareaComponent,
+    ChatRoomComponent,
+    SidebarContentComponent,
+    
   ],
 
   imports: [

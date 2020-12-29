@@ -9,7 +9,7 @@ router.put('/' , (req,res) => {
     let user = req.body;
     
     checkValidity(user).then(()=>{
-        db.query("UPDATE users SET profilbild= $1,status=$2,name=$3 WHERE name = $4",[user.profilbild,user.status,user.name,user.name]).then(data=>{
+        db.query("UPDATE users SET profilbild= $1,status=$2 WHERE name = $3",[user.profilbild,user.status,user.name]).then(data=>{
             res.status(200).json({message: "Updated row"});
         }).catch(error => {
             res.status(404).json({message: "Could not be updated."});

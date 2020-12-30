@@ -1,0 +1,26 @@
+{
+  "name": "webtech_whatsappclone",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Thunder1702/WebTech_WhatsAppClone.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Thunder1702/WebTech_WhatsAppClone/issues"
+  },
+  "homepage": "https://github.com/Thunder1702/WebTech_WhatsAppClone#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "pg": "^8.5.1",
+    "socket.io": "^3.0.4"
+  }
+}

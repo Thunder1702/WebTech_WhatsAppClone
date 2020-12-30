@@ -5,6 +5,16 @@ let bodyParser = require('body-parser');
 const db = require("./db");
 
 let app = express();
+
+
+const server = require('http').createServer(app);
+const options = { cors: {
+    origin: "http://localhost:4200",
+    methods: ["GET", "POST"]
+  } };
+const io = require('socket.io')(server, options);
+
+
 //app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -49,10 +59,27 @@ app.use("/", (req, res) => {
     res.send("Welcome to WhatsAppClone server");
 });
 
+io.on("connection", (socket) => {
+    socket.on("sendMessage", (message) => {
+      console.log("sendMessage: " + socket.id + " : " + message);
+      socket.broadcast.emit("message", message);
+    });
+    console.log("someone connected");
+  });
+  
+  io.on("disconnect", (socket) => {
+    console.log("someone disconnected");
+  });
+  
+  io.on("disconnecting", (socket) => {
+    console.log("someone disconnecting");
+  });
+
+  
 
 //initialisieren wir eine Datebank, macht einen neuen Promis
-db.initDb.then(() => {
-    app.listen(cfg.server.port, () => {
+//db.initDb.then(() => {
+    server.listen(cfg.server.port, () => {
         console.log("Listening on port " + cfg.server.port + "...");
     });
-}, () => {console.log("Failed to connect to DB!")});
+//}, () => {console.log("Failed to connect to DB!")});

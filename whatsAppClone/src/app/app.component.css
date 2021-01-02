@@ -5,17 +5,18 @@
     background-color: white;
     font-size: 16px;
   }
-  
+
   app-sidebar{
   height: auto;
   }
-  
+
   app-contact-list{
     height: 100%;
-  
+
   }
-  
+
   app-main-chat{
     height: auto;
     flex: 1;
   }
+

@@ -5,29 +5,29 @@
     flex-direction: column;
     display: flex;
   }
-  
-  .header{
+
+ .header{
     padding: 10px;
     max-height: 60px;
     background-color: #EDEDED;
     display: flex;
     align-items: center;
   }
-  
+
   .search {
     background-color: #F6F6F6;
     border-bottom: 1px solid lightgray;
     padding: 10px;
     justify-content: center;
     position: left;
-  
+
   }
   .button-class{
     border: none;
     background-color: #F6F6F6;
     color: rgb(160, 150, 150);
   }
-  
+
   .sidebar_searchbutton {
     border: 1px solid lightgray;
     width: 380px;
@@ -36,12 +36,12 @@
     padding: 8px 20px 8px 30px;
     position: right;
   }
-  
+
   .sidebar_content {
     overflow-y: scroll;
     height: 100%;
   }
-  
+
   .example-button-container{
     display: table-cell;
     padding-left: 5px;

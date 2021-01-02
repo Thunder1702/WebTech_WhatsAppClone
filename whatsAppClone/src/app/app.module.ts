@@ -1,10 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 import { AppComponent } from './app.component';
 import { MainChatComponent } from './main-chat/main-chat.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ContactListComponent } from './contact-list/contact-list.component';
-import { LoginComponent } from './login/login.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ChatareaComponent } from './chatarea/chatarea.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -15,6 +14,12 @@ import { TextFieldModule } from '@angular/cdk/text-field';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { RegisterComponent } from './register/register.component';
+import { SigninComponent } from './signin/signin.component';
+import { AngularMaterialModule } from './angular-material.module';
+import { AppRoutingModule } from './login-routing.module';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -23,13 +28,15 @@ import { HttpClientModule } from '@angular/common/http';
     MainChatComponent,
     ProfileComponent,
     ContactListComponent,
-    LoginComponent,
     SidebarComponent,
     ChatareaComponent,
-    
+    SigninComponent,
+    RegisterComponent
   ],
 
   imports: [
+    AngularMaterialModule,
+    AppRoutingModule,
     BrowserModule,
     BrowserAnimationsModule,
     BrowserModule,
@@ -40,10 +47,17 @@ import { HttpClientModule } from '@angular/common/http';
     TextFieldModule,
     MatIconModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AngularMaterialModule,
+    AppRoutingModule,
+    FlexLayoutModule,
+    ReactiveFormsModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }
+
+
 

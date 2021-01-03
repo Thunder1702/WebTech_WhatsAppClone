@@ -26,8 +26,8 @@ export class WhatsAppService {
       return this.http.post(`${this.baseURL}/contacts/newContact`,contact,this.httpOptions);
   }
 
-  deleteContact(id: number): void {
-    this.http.delete(`${this.baseURL}/contacts/deleteContact/${id}`, this.httpOptions).
+  deleteContact(id: number, user: string): void {
+    this.http.delete(`${this.baseURL}/contacts/deleteContact/${id}/${user}`, this.httpOptions).
     subscribe((res) => {
       console.log("deleted contact");
     }), (error) => {
@@ -43,24 +43,26 @@ export class WhatsAppService {
       return this.http.get(`${this.baseURL}/contacts/getContacts`);
   }
 
+  getAllContactsFromUser(user: string): Observable<any> {
+    return this.http.get(`${this.baseURL}/contacts/getAllContactsFromUser/${user}`);
+  }
+
   //Message 
 
   getAllMessages(): Observable<any> {
     return this.http.get(`${this.baseURL}/mainChat/getMessages`);
   }
 
-  getMessageById(id: number): Observable<any> {
-      return this.http.get(`${this.baseURL}/mainChat/getMessage/${id}`);
+  getMessageById(id: number,user: string): Observable<any> {
+      return this.http.get(`${this.baseURL}/mainChat/getMessage/${id}/${user}`);
   }
 
   sendMessage(message: Message): Observable<any> {
-    //   let nM = new Message();
-    //   nM.messageTo_id = message.messageTo_id;
-    //   nM.messageFrom_id = message.messageFrom_id;
-    //   nM.messageText = message.messageText;
-    //   nM.read = message.read;
-    //   nM.id = message.id;
       return this.http.post(`${this.baseURL}/mainChat/sendMessage`,message,this.httpOptions);
+  }
+
+  getChatHistoryFromContactUser(user: string, id: number): Observable<any> {
+    return this.http.get(`${this.baseURL}/mainChat/getChatHistoryUserContact/${user}/${id}`);
   }
  
   //Photo
@@ -85,6 +87,11 @@ export class WhatsAppService {
 
   getUser(username: string): Observable<any> {
       return this.http.get(`${this.baseURL}/profile/${username}`);
+  }
+
+  //Eventuell passwort und username als parameter schicken?
+  signIn(user: User): Observable<any> {
+    return this.http.get(`${this.baseURL}/login/signIn`,user,this.httpOptions);
   }
 
 }

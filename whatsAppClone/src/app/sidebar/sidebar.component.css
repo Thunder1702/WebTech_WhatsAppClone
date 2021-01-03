@@ -56,3 +56,8 @@
   background-color: #868585;
 
 }
+
+.sidebar_content{
+  display: flex;
+  flex-direction: column;
+}

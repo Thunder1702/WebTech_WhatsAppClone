@@ -24,11 +24,13 @@ const newContact = require('./routes/newContact');
 const deleteContact = require('./routes/deleteContact');
 const editContact = require('./routes/editContact');
 const getContacts = require('./routes/getContacts');
+const getAllContactsFromUser = require('./routes/getAllContactsFromUser');
 //Eventuel in eine route --> Message und dort ob GET oder POST Befehl kommt
 //Requests for Messages
 const sendMessage = require('./routes/sendMessage');
 const getMessage = require('./routes/getMessage');
 const getMessages = require('./routes/getMessages.js');
+const chatHistoryUserContact = require('./routes/chathistoryUserContact');
 //Requests for Photos
 const uploadPhotot = require('./routes/uploadPhoto');
 const getPhotos = require('./routes/getPhotos');
@@ -36,21 +38,25 @@ const getPhotos = require('./routes/getPhotos');
 const registerUser = require('./routes/registerUser');
 const editUser = require('./routes/editUser');
 const getUser = require('./routes/getUser');
+const signIn = require('./routes/signIn');
 
 //Contacts
 app.use('/contacts/newContact', newContact);
 app.use('/contacts/deleteContact', deleteContact);
 app.use('/contacts/editContact', editContact);
 app.use('/contacts/getContacts', getContacts);
+app.user('/contacts/getAllContactsFromUser', getAllContactsFromUser);
 //Message
 app.use('/mainChat/sendMessage', sendMessage);
 app.use('/mainChat/getMessage', getMessage);
 app.use('/mainChat/getMessages', getMessages);
+app.user('/mainChat/getChatHistoryUserContact',chatHistoryUserContact);
 //Photo
 app.use('/mainChat/uploadPhoto', uploadPhotot);
 app.use('/mainChat/getPhotos', getPhotos);
 //User or Profile
 app.use('/login/register', registerUser);
+app.use('/login/signIn',signIn);
 app.use('/profile', getUser);
 app.use('/profile/edit', editUser);
 

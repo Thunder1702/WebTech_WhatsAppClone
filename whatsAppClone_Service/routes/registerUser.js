@@ -9,7 +9,7 @@ router.post('/' , (req,res) => {
     let user = req.body;
     
     checkValidity(user).then(()=>{
-        db.query("INSERT INTO users VALUES ('','',$1,$2);",[user.name,user.password]).then(data=>{
+        db.query("INSERT INTO users VALUES ('','',$1,$2,$3);",[user.name,user.password,user.email]).then(data=>{
             res.status(200).json({message: "Added row"});
         }).catch(error => {
             res.status(404).json({message: "Problems"});
@@ -21,7 +21,7 @@ router.post('/' , (req,res) => {
 
 let checkValidity = function (user){
     return new Promise((resolve,reject) => {
-        if(user.name && user.password){
+        if(user.name && user.password && user.email){
             db.query("SELECT * FROM users WHERE name = $1;",[user.name])
             .then(data=>{
                 if(data.rowCount >0){

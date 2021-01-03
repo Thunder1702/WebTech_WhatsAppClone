@@ -9,7 +9,7 @@ router.post('/' , (req,res) => {
     let photo = req.body;
     
     checkValidity(photo).then(()=>{
-        db.query("INSERT INTO photo VALUES ($1,$2,$3,$4);",[photo.id,photo.url,photo.description,photo.photo_uploadedBy_id]).then(data=>{
+        db.query("INSERT INTO photo VALUES ($1,$2,$3,$4);",[photo.id,photo.url,photo.description,photo.photo_uploaded_by]).then(data=>{
             res.status(200).json({message: "Added row"});
         }).catch(error => {
             res.status(404).json({message: "Problems"});
@@ -21,7 +21,7 @@ router.post('/' , (req,res) => {
 
 let checkValidity = function (photo){
     return new Promise((resolve,reject) => {
-        if(photo.id && photo.url&&photo.description&&photo.photo_uploadedBy_id){
+        if(photo.id && photo.url&&photo.description&&photo.photo_uploaded_by){
             db.query("SELECT * FROM photo WHERE id = $1;",[photo.id])
             .then(data=>{
                 if(data.rowCount >0){

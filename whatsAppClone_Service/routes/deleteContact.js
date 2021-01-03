@@ -5,10 +5,11 @@ const router = express.Router();
 const getDb = require("../db").getDb;
 let db = getDb();
 
-router.delete('/:id' , (req,res) => {
+router.delete('/:id/:user' , (req,res) => {
     let id = req.params.id;
+    let user = req.params.user;
     
-    checkIfExists(id).then(()=>{
+    checkIfExists(id,user).then(()=>{
         db.query("DELETE FROM contact WHERE id = $1",[id]).then(data=>{
             res.status(200).json({message: "Deleted row"});
         }).catch(error => {
@@ -19,9 +20,9 @@ router.delete('/:id' , (req,res) => {
     });
 });
 
-let checkIfExists = function (id){
+let checkIfExists = function (id,user){
     return new Promise((resolve,reject) => {
-        db.query("SELECT * FROM contact WHERE id = $1;",[id])
+        db.query("SELECT * FROM contact WHERE id = $1 AND users_contact = $2;",[id,user])
             .then(data=>{
                 if(data.rowCount = 1){
                     resolve();

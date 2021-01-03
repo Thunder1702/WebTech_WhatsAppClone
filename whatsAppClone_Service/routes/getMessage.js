@@ -5,10 +5,11 @@ const router = express.Router();
 const getDb = require("../db").getDb;
 let db = getDb();
 
-router.get('/:id' , (req,res) => {
+router.get('/:id/:user' , (req,res) => {
     let id = req.params.id;
+    let user = req.params.user;
     
-    db.query("SELECT * FROM message WHERE id = $1",[id]).then(data =>{
+    db.query("SELECT * FROM message WHERE id = $1 AND (message_to = $2 OR message_from = $3);",[id,user,user]).then(data =>{
         if(data.rowCount >0){
             res.status(200).json(data.rows);
         }else{

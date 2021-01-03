@@ -9,7 +9,7 @@ router.post('/' , (req,res) => {
     let message = req.body;
     
     checkValidity(message).then(()=>{
-        db.query("INSERT INTO message VALUES ($1,$2,$3,$4,$5);",[message.messageTo_id,message.messageFrom_id,message.messageText,message.read,message.id]).then(data=>{
+        db.query("INSERT INTO message VALUES ($1,$2,$3,$4,$5);",[message.id,message.message_to,message.message_from,message.message_text,message.read]).then(data=>{
             res.status(200).json({message: "Added row"});
         }).catch(error => {
             res.status(404).json({message: "Problems"});
@@ -21,7 +21,7 @@ router.post('/' , (req,res) => {
 
 let checkValidity = function (message){
     return new Promise((resolve,reject) => {
-        if(message.id && message.messageTo_id&&message.messageFrom_id&&message.messageText&&message.read){
+        if(message.id && message.message_to&&message.message_from&&message.message_text&&message.read){
             db.query("SELECT * FROM message WHERE id = $1;",[message.id])
             .then(data=>{
                 if(data.rowCount >0){

@@ -22,7 +22,7 @@ router.put('/' , (req,res) => {
 let checkValidity = function (contact){
     return new Promise((resolve,reject) => {
         if(contact.id && contact.phone_number&&contact.first_name&&contact.last_name&&contact.email){
-            db.query("SELECT * FROM contact WHERE id = $1;",[contact.id])
+            db.query("SELECT * FROM contact WHERE id = $1 AND users_contact = $2;",[contact.id, contact.users_contact])
             .then(data=>{
                 if(data.rowCount = 1){
                     resolve();

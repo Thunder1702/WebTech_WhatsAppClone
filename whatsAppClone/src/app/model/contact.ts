@@ -4,4 +4,5 @@ export class Contact{
     last_name: string;
     email: string;
     phone_number: number;
+    user_contact: string;
 }

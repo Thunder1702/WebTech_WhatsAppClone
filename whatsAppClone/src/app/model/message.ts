@@ -1,7 +1,7 @@
 export class Message{
-    messageTo_id: number;
-    messageFrom_id: number;
-    messageText: string;
-    read: boolean;
     id: number;
+    message_to: string;
+    message_from: string;
+    message_text: string;
+    read: boolean;
 }

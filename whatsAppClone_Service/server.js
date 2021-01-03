@@ -16,7 +16,7 @@ const io = require('socket.io')(server, options);
 
 
 //app.use(cors());
-app.use(bodyParser.urlencoded({ extended: true }));
+/*app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 //Request for Contacts
@@ -64,24 +64,83 @@ app.use('/profile/edit', editUser);
 app.use("/", (req, res) => {
     res.send("Welcome to WhatsAppClone server");
 });
+*/
+
+var clientList = []
+var chatRoomList = []
+var chatNr = 0;
+
+/*
+var room1 = {
+  name: "",
+  clientList: []
+}
+*/
+
+let getClientWithID = (id) => {
+  for (let i=0;i<clientList.length;i++) {      
+    if (clientList[i].id === id) {
+      return clientList[i];
+    }
+  }
+};
 
 io.on("connection", (socket) => {
+
+    if (!getClientWithID(socket.id)) {
+      clientList.push(socket);
+    } else return;
+
+
     socket.on("sendMessage", (message) => {
       console.log("sendMessage: " + socket.id + " : " + message);
-      socket.broadcast.emit("message", message);
+      let msg = {
+        id: socket.id,
+        msg: message
+      }
+      socket.broadcast.emit("message", msg);
+      
     });
-    console.log("someone connected");
-  });
-  
-  io.on("disconnect", (socket) => {
-    console.log("someone disconnected");
-  });
-  
-  io.on("disconnecting", (socket) => {
-    console.log("someone disconnecting");
-  });
+
+    socket.on("createChat", (name) => {
+      let chat = {
+        id: chatNr++,
+        name: name
+      }
+      let chatName = chat.name + "_" + chat.id;
+      console.log("createChat: " + socket.id + " : " + chatName);
+
+
+      socket.emit("newChat", chat); // chat creator
+      socket.broadcast.emit("newChat", chat); // all others
+      
+    });
+
+    socket.on("disconnect", () => {
+      let index = -1;
+
+      for (let i=0;i<clientList.length;i++) {      
+        if (clientList[i].id === socket.id) {
+          index = i;
+        }
+      }
+      if (index > -1) {
+        clientList.splice(index, 1);
+      }
+      console.log("client disconnected - id" + socket.id);
+      console.log("Connected Clients: " + clientList.length);
+    });
+
+    console.log("client connected - id" + socket.id);
+    console.log("Connected Clients: " + clientList.length);
+
+});
+
 
   
+
+
+ 
 
 //initialisieren wir eine Datebank, macht einen neuen Promis
 //db.initDb.then(() => {

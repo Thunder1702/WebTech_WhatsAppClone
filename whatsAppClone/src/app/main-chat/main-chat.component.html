@@ -13,10 +13,9 @@
 
     </div>
     <div class="footer">
-        <input [(ngModel)]="newMessage" (keyup)="$event.keyCode == 13 && sendMessage()" id="textinput"
-            placeholder="Type a message" ng-minlength="5" required />
-        <!--<button (click)=" sendMessage()" class="sendbutton">Send Message</button>-->
-        <button mat-mini-fab aria-label="Example icon-button with a heart icon" (click)=" sendMessage()" class="sendbutton">
+        <input [(ngModel)]="newMessage" id="textinput" placeholder="Type a message" />
+        <button [disabled]="!newMessage" mat-mini-fab aria-label="Example icon-button with a heart icon"
+            (click)=" sendMessage()" class="sendbutton">
             <mat-icon>send</mat-icon>
         </button>
 

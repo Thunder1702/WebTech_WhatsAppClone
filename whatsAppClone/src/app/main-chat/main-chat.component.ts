@@ -21,6 +21,9 @@ export class MainChatComponent implements OnInit {
 
   sendMessage() {
     this.chatService.sendMessage(this.newMessage);
+    if(this.newMessage == ""){
+     
+    }
     this.messageList.push("me: " + this.newMessage);
     this.newMessage = '';
   }

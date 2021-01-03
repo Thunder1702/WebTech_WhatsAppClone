@@ -10,11 +10,15 @@
         <div *ngFor="let message of messageList">
             <p>{{ message }}</p>
         </div>
-        <input [(ngModel)]="newMessage" (keyup)="$event.keyCode == 13 && sendMessage()" />
-        <button (click)="sendMessage()">Send Message</button>
+
     </div>
     <div class="footer">
-        <label for="textinput"></label>
-        <input type="text" id="textinput" placeholder="Type a message">
+        <input [(ngModel)]="newMessage" (keyup)="$event.keyCode == 13 && sendMessage()" id="textinput"
+            placeholder="Type a message" ng-minlength="5" required />
+        <!--<button (click)=" sendMessage()" class="sendbutton">Send Message</button>-->
+        <button mat-mini-fab aria-label="Example icon-button with a heart icon" (click)=" sendMessage()" class="sendbutton">
+            <mat-icon>send</mat-icon>
+        </button>
+
     </div>
 </section>

@@ -90,8 +90,8 @@ export class WhatsAppService {
   }
 
   //Eventuell passwort und username als parameter schicken?
-  signIn(user: User): Observable<any> {
-    return this.http.get(`${this.baseURL}/login/signIn`,user,this.httpOptions);
-  }
+  // signIn(user: User): Observable<any> {
+  //   return this.http.get(`${this.baseURL}/login/signIn`,user,this.httpOptions);
+  // }
 
 }

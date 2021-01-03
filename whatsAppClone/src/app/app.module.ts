@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER, CUSTOM_ELEMENTS_SCHEMA, Provider } from '@angular/core';
 import { AppComponent } from './app.component';
 import { MainChatComponent } from './main-chat/main-chat.component';
 import { ProfileComponent } from './profile/profile.component';
@@ -21,7 +21,29 @@ import { AppRoutingModule } from './login-routing.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { ChatService } from './chat.service';
 
+
+function appInitializerInit(): Provider {
+  return {
+    provide: APP_INITIALIZER,
+    useFactory: (chatService: ChatService) => {
+      return () => {
+        // load all init promises after cfg loads
+        return chatService.connect()
+          .then(() => {
+            // connect finished
+          }).catch(
+            (err) => {
+              console.log('Error initializing:');
+              console.log(err);
+            });
+      };
+    },
+    deps: [ChatService],
+    multi: true
+  };
+}
 
 @NgModule({
   declarations: [
@@ -33,6 +55,7 @@ import { MatButtonModule } from '@angular/material/button';
     ChatareaComponent,
     SigninComponent,
     RegisterComponent
+
   ],
 
   imports: [
@@ -55,7 +78,10 @@ import { MatButtonModule } from '@angular/material/button';
     ReactiveFormsModule,
     MatButtonModule
   ],
-  providers: [],
+  providers: [
+    ChatService,
+    appInitializerInit() // loads chat service
+  ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

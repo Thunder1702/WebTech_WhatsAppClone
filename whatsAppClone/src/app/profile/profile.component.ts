@@ -12,15 +12,14 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  url = 'https://thumbs.dreamstime.com/b/default-avatar-profile-image-vector-social-media-user-icon-potrait-182347582.jpg';
+  onselectFile(e) {
+    if (e.target.files) {
+      var reader = new FileReader();
+      reader.readAsDataURL(e.target.files[0]);
+      reader.onload = (event: any) => {
+        this.url = event.target.result;
+      }
+    }
+  }
 }
-//uploading a photo to the profile page
-
-// window.addEventListener('load', function () {
-//   document.querySelector('input[type="file"]').addEventListener('change', function () {
-//     if (this.files && this.files[0]) {
-//       var img = document.querySelector('img');  // $('img')[0]
-//       img.src = URL.createObjectURL(this.files[0]); // set src to blob url
-//       //img.onload = imageIsLoaded;
-//      }
-//   });
-// });

@@ -16,7 +16,7 @@ const io = require('socket.io')(server, options);
 
 
 //app.use(cors());
-/*app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 //Request for Contacts
@@ -40,17 +40,19 @@ const editUser = require('./routes/editUser');
 const getUser = require('./routes/getUser');
 const signIn = require('./routes/signIn');
 
+
+
 //Contacts
 app.use('/contacts/newContact', newContact);
 app.use('/contacts/deleteContact', deleteContact);
 app.use('/contacts/editContact', editContact);
 app.use('/contacts/getContacts', getContacts);
-app.user('/contacts/getAllContactsFromUser', getAllContactsFromUser);
+app.use('/contacts/getAllContactsFromUser', getAllContactsFromUser);
 //Message
 app.use('/mainChat/sendMessage', sendMessage);
 app.use('/mainChat/getMessage', getMessage);
 app.use('/mainChat/getMessages', getMessages);
-app.user('/mainChat/getChatHistoryUserContact',chatHistoryUserContact);
+app.use('/mainChat/getChatHistoryUserContact',chatHistoryUserContact);
 //Photo
 app.use('/mainChat/uploadPhoto', uploadPhotot);
 app.use('/mainChat/getPhotos', getPhotos);
@@ -64,7 +66,7 @@ app.use('/profile/edit', editUser);
 app.use("/", (req, res) => {
     res.send("Welcome to WhatsAppClone server");
 });
-*/
+
 
 var clientList = []
 var chatRoomList = []
@@ -143,8 +145,8 @@ io.on("connection", (socket) => {
  
 
 //initialisieren wir eine Datebank, macht einen neuen Promis
-//db.initDb.then(() => {
+db.initDb.then(() => {
     server.listen(cfg.server.port, () => {
         console.log("Listening on port " + cfg.server.port + "...");
     });
-//}, () => {console.log("Failed to connect to DB!")});
+}, () => {console.log("Failed to connect to DB!")});

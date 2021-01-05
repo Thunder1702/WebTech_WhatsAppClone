@@ -18,7 +18,7 @@ export class SidebarComponent implements OnInit {
       this.createChat();
     });
 
-    this.chatService.getNewChats().subscribe(chat => {
+    this.chatService.getNewChat().subscribe(chat => {
       console.log("got new chat" + chat.name);
       this.displayChat(chat.name + "_" + chat.id);
     })

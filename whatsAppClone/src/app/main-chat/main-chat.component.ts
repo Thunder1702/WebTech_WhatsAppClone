@@ -23,7 +23,7 @@ export class MainChatComponent implements OnInit {
     this.newMessage = '';
   }
   ngOnInit() {
-    this.chatService.getMessages().subscribe(msg => {
+    this.chatService.getMessage().subscribe(msg => {
       this.messageList.push(msg.msg);
       console.log(msg);
       console.log(`from: ${msg.id}`);

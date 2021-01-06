@@ -5,7 +5,6 @@ import { MainChatComponent } from './main-chat/main-chat.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ContactListComponent } from './contact-list/contact-list.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
-import { ChatareaComponent } from './chatarea/chatarea.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatInputModule } from '@angular/material/input';
@@ -52,7 +51,6 @@ function appInitializerInit(): Provider {
     ProfileComponent,
     ContactListComponent,
     SidebarComponent,
-    ChatareaComponent,
     SigninComponent,
     RegisterComponent
 

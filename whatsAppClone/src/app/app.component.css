@@ -1,10 +1,4 @@
-.main-container {
-  display: flex;
-  box-shadow: 0px 0px 10px 0px rgba(black, .42);
-  height: 91%;
-  background-color: white;
-  font-size: 16px;
-}
+
 
 app-sidebar {
   height: auto;
@@ -15,7 +9,3 @@ app-contact-list {
 
 }
 
-app-main-chat {
-  height: auto;
-  flex: 1;
-}

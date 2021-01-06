@@ -5,13 +5,9 @@ body {
   height: 100%;
   margin: 0;
   padding: 0;
-}
-
-body {
   min-height: 100vh;
   /* background-color: #128C7E; */
   font-family: 'Roboto', sans-serif;
-  background-image: url("Images/login-backgr.jpg");
 }
 
 .app-header {
@@ -102,7 +98,7 @@ body {
   background: #FFF7FA;
 }
 
-.main-wrapper .btn-block{
+.main-wrapper .btn-block {
   background-color: #e5e5e5;
 }
 
@@ -111,5 +107,12 @@ body {
 }
 
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}

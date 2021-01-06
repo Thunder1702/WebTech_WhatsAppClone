@@ -1,8 +1,8 @@
 .main-wrapper mat-card-header mat-card-title {
   font-size: 25px;
   margin: 5px;
+  
 }
-
-body {
-  background-image: url("Images/login-backgr.jpg");
+.main-wrapper{
+  background-image: url("/assets/Images/login-backgr.jpg");
 }

@@ -16,7 +16,8 @@
 }
 
 .body {
-  width: 100%;
+  flex-direction: column;
+  /* width: 100%; */
   height: 94%;
   background: url('https://i.pinimg.com/originals/85/70/f6/8570f6339d3189c96e340d47a581d3b8.jpg');
   overflow-y: scroll;
@@ -26,7 +27,7 @@
 .footer {
   height: 6%;
   background: #EDEDED;
-  align-items: center;
+  /* align-items: center; */
   border-top: 1px solid lightgray;
   text-align: center;
 }

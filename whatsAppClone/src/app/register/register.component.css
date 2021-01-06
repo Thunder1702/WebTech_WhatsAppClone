@@ -2,3 +2,7 @@
   font-size: 25px;
   margin: 5px;
 }
+
+body {
+  background-image: url("Images/login-backgr.jpg");
+}

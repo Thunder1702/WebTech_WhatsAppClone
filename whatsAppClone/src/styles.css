@@ -9,7 +9,7 @@ body {
 
 body {
   min-height: 100vh;
-  background-color: #128C7E;
+  /* background-color: #128C7E; */
   font-family: 'Roboto', sans-serif;
   background-image: url("Images/login-backgr.jpg");
 }

@@ -3,7 +3,8 @@
   flex: .35;
   border-right: 1px solid lightgray;
   flex-direction: column;
-  display: flex;
+  /* display: flex; */
+  float: left;
 }
 
 .header {

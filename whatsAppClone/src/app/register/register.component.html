@@ -1,4 +1,13 @@
 <div class="main-wrapper" fxLayout="row" fxLayoutAlign="center center">
+
+  <mat-toolbar color="green" class="app-header">
+    <div><a href="#" target="_blank" class="logo">Whatsapp</a></div>
+    <span class="nav-tool-items">
+      <a mat-button routerLink="signin" routerLinkActive="active">Sign in</a>
+      <a mat-button mat-raised-button routerLink="register" routerLinkActive="active">Register</a>
+    </span>
+  </mat-toolbar>
+
   <mat-card class="box">
     <mat-card-header>
       <mat-card-title>Register</mat-card-title>
@@ -21,7 +30,8 @@
         </mat-form-field>
       </mat-card-content>
 
-      <button mat-stroked-button class="btn-block">Register</button>
+      <!-- <button mat-stroked-button class="btn-block">Register</button> -->
+      <a mat-stroked-button class="btn-block" routerLink="mainChat" routerLinkActive="active">Sign in</a>
 
     </form>
   </mat-card>

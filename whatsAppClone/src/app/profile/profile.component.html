@@ -1,30 +1,34 @@
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<div id="body">
 <div id="profilecontent">
-<div id="upperborder">
-    <h1>Profile and status</h1>
-    <a class="button-header" routerLink="backToMainChat" routerLinkActive="active">
+    <div id="upperborder">
+        <h1>Profile and status</h1>
+      <a mat-mini-fab  aria-label="Example icon button with a home icon" 
+      routerLink="backToMainChat" routerLinkActive="active" class="button-header">
         <mat-icon>keyboard_arrow_left</mat-icon>
-    </a>
-</div>
-<div id="profilephoto">
-    <label for="files" class="btn">
-    <img id="myImg" [src]="url" alt="" height="200px">
-   
-    <mat-icon id="changeid">border_color</mat-icon>
-</label>
-<input type="file" id="files" (change)="onselectFile($event)" style="visibility:hidden">
+      </a>
+  
+    </div>
+    <div id="profilephoto">
+        <label for="files" class="btn">
+            <img id="myImg" [src]="url" alt="" height="200px">
 
+            <mat-icon id="changeid">border_color</mat-icon>
+        </label>
+        <input type="file" id="files" (change)="onselectFile($event)" style="visibility:hidden">
+
+    </div>
+    <br>
+    <div class="div-border">
+        <mat-form-field class="example-form-field">
+            <mat-label>Your name</mat-label>
+            <input matInput type="text">
+        </mat-form-field>
+    </div>
+    <div class="div-border">
+        <mat-form-field class="example-form-field">
+            <mat-label>Your status</mat-label>
+            <input matInput type="text" [(ngModel)]="value">
+        </mat-form-field>
+    </div>
 </div>
-<br>
-<div class="div-border">
-    <mat-form-field class="example-form-field">
-        <mat-label>Your name</mat-label>
-        <input matInput type="text">
-    </mat-form-field>
 </div>
-<div class="div-border">
-    <mat-form-field class="example-form-field">
-        <mat-label>Your status</mat-label>
-        <input matInput type="text" [(ngModel)]="value">
-    </mat-form-field>
-</div></div>

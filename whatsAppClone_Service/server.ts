@@ -2,10 +2,11 @@ import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
 import SocketIOStatic, { Socket } from "socket.io";
-const db = require("./db");
-const cfg = require("./config.json"); // config file
 
-let app = express();
+import { initDb } from "./db";
+let cfg = require("./config.json"); // config file
+
+const app = express();
 
 const server = require("http").createServer(app);
 const options = {
@@ -17,30 +18,30 @@ const options = {
 
 const sio = new SocketIOStatic.Server(server, options);
 
-//app.use(cors());
+// app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 //Request for Contacts
-const newContact = require("./routes/newContact");
-const deleteContact = require("./routes/deleteContact");
-const editContact = require("./routes/editContact");
-const getContacts = require("./routes/getContacts");
-const getAllContactsFromUser = require("./routes/getAllContactsFromUser");
+import newContact from "./routes/newContact";
+import deleteContact from "./routes/deleteContact";
+import editContact from "./routes/editContact";
+import getContacts from "./routes/getContacts";
+import getAllContactsFromUser from "./routes/getAllContactsFromUser";
 //Eventuel in eine route --> Message und dort ob GET oder POST Befehl kommt
 //Requests for Messages
-const sendMessage = require("./routes/sendMessage");
-const getMessage = require("./routes/getMessage");
-const getMessages = require("./routes/getMessages.js");
-const chatHistoryUserContact = require("./routes/chathistoryUserContact");
+import sendMessage from "./routes/sendMessage";
+import getMessage from "./routes/getMessage";
+import getMessages from "./routes/getMessages";
+import chatHistoryUserContact from "./routes/chathistoryUserContact";
 //Requests for Photos
-const uploadPhotot = require("./routes/uploadPhoto");
-const getPhotos = require("./routes/getPhotos");
+import uploadPhotot from "./routes/uploadPhoto";
+import getPhotos from "./routes/getPhotos";
 //Requests for User or Profile
-const registerUser = require("./routes/registerUser");
-const editUser = require("./routes/editUser");
-const getUser = require("./routes/getUser");
-const signIn = require("./routes/signIn");
+import registerUser from "./routes/registerUser";
+import editUser from "./routes/editUser";
+import getUser from "./routes/getUser";
+import signIn from "./routes/signIn";
 
 //Contacts
 app.use("/contacts/newContact", newContact);
@@ -142,7 +143,7 @@ sio.on("connection", (socket: Socket) => {
 });
 
 //initialisieren wir eine Datebank, macht einen neuen Promis
-db.initDb.then(
+initDb().then(
   () => {
     server.listen(cfg.server.port, () => {
       console.log("Listening on port " + cfg.server.port + "...");

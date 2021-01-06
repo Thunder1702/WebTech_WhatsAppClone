@@ -20,6 +20,17 @@ let initDb = new Promise((resolve, reject) => {
         }else{
             resolve();
         console.log("Database connected...");
+        }sword,
+		database: cfg.database.db,
+	});
+
+    //TODO: connect to database and properly resolve promise iff connection is established, otherwise reject it
+    client.connect((error) => {
+        if (error) {
+            reject();
+        }else{
+            resolve();
+        console.log("Database connected...");
         }
     }) 
 });

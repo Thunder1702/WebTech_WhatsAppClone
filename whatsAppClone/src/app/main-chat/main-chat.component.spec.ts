@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MainChatComponent } from './main-chat.component';
-
 describe('MainChatComponent', () => {
   let component: MainChatComponent;
   let fixture: ComponentFixture<MainChatComponent>;

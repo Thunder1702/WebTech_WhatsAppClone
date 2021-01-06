@@ -68,7 +68,7 @@ app.use("/", (req, res) => {
 
 var clientList = []
 var chatRoomList = []
-var chatNr = 0;
+//var chatNr = 0;
 
 /*
 var room1 = {
@@ -89,6 +89,19 @@ io.on("connection", (socket) => {
 
     if (!getClientWithID(socket.id)) {
       clientList.push(socket);
+
+      setTimeout( () => {
+        for (c of chatRoomList) {
+          let chat = {
+            id: c.id,
+            name: c.name
+          }
+          //console.log(chat);
+          
+          socket.emit("newChat", chat);
+        }
+      },500);
+
     } else return;
 
 
@@ -104,11 +117,18 @@ io.on("connection", (socket) => {
 
     socket.on("createChat", (name) => {
       let chat = {
-        id: chatNr++,
+        id: chatRoomList.length,
         name: name
       }
       let chatName = chat.name + "_" + chat.id;
       console.log("createChat: " + socket.id + " : " + chatName);
+
+      chatRoomList.push({
+        name: name,
+        id: chat.id,
+        clients: [],
+        messages: []
+      });
 
 
       socket.emit("newChat", chat); // chat creator
@@ -143,8 +163,8 @@ io.on("connection", (socket) => {
  
 
 //initialisieren wir eine Datebank, macht einen neuen Promis
-db.initDb.then(() => {
+//db.initDb.then(() => {
     server.listen(cfg.server.port, () => {
         console.log("Listening on port " + cfg.server.port + "...");
     });
-}, () => {console.log("Failed to connect to DB!")});
+//}, () => {console.log("Failed to connect to DB!")});

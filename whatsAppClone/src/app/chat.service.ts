@@ -43,7 +43,7 @@ export class ChatService {
     ChatService.socket.emit("createChat", name);
   }
 
-  getMessages(): Observable<{ id: string, msg: string }> {
+  getMessage(): Observable<{ id: string, msg: string }> {
     return Observable.create(observer => {
       ChatService.socket.on('message', (msg: string) => {
         observer.next(msg);
@@ -51,7 +51,7 @@ export class ChatService {
     });
   }
 
-  getNewChats(): Observable<{ id: number, name: string }> {
+  getNewChat(): Observable<{ id: number, name: string }> {
     return Observable.create(observer => {
       ChatService.socket.on('newChat', (msg: string) => {
         observer.next(msg);

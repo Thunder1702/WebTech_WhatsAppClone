@@ -17,7 +17,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RegisterComponent } from './register/register.component';
 import { SigninComponent } from './signin/signin.component';
 import { AngularMaterialModule } from './angular-material.module';
-import { AppRoutingModule } from './login-routing.module';
+import { AppRoutingModule } from './routing.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';

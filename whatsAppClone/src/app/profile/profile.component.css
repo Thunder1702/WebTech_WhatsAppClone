@@ -72,3 +72,7 @@
  #profilecontent{
    background-color: white;
  }
+  #backToMainChat {
+    text-align: left;
+    color: chartreuse;
+}

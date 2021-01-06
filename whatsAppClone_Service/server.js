@@ -40,8 +40,6 @@ const editUser = require('./routes/editUser');
 const getUser = require('./routes/getUser');
 const signIn = require('./routes/signIn');
 
-
-
 //Contacts
 app.use('/contacts/newContact', newContact);
 app.use('/contacts/deleteContact', deleteContact);

@@ -94,4 +94,11 @@ export class WhatsAppService {
   //   return this.http.get(`${this.baseURL}/login/signIn`,user,this.httpOptions);
   // }
 
+  signIn(name: string, password: string): Observable<any> {
+    return this.http.get(`${this.baseURL}/login/signIn/${name}/${password}`);
+  }
+
+
+
+
 }

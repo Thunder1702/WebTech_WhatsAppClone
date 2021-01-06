@@ -1,8 +1,10 @@
-import express from "express";
+import express, { RequestHandler, RequestParamHandler } from "express";
 import { getDb } from "../db";
+import { checkAuth } from "../util/checkAuth";
+
 const router = express.Router();
 
-router.get("/:name", (req, res) => {
+router.get("/:name", checkAuth, (req, res) => {
   let db = getDb();
   let userName = req.params.name;
   db.query("SELECT * FROM users WHERE name = $1;", [userName])

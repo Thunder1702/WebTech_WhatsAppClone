@@ -4,8 +4,12 @@ const router = express.Router();
 import { getDb } from "../db";
 
 function checkValidity(user: any, db: Client) {
-  return new Promise<void>((resolve, reject) => {
-    if (user.name && user.password && user.email) {
+  let pr = new Promise<void>((resolve, reject) => {
+    if (
+      typeof user.name === "string" &&
+      typeof user.pasword === "string" &&
+      typeof user.email === "string"
+    ) {
       db.query("SELECT * FROM users WHERE name = $1;", [user.name])
         .then((data) => {
           if (data.rowCount > 0) {
@@ -21,11 +25,16 @@ function checkValidity(user: any, db: Client) {
       reject();
     }
   });
+  return pr;
 }
+// {
+//   "name": "dilli",
+//   "pasword": "test",
+//   "email": "dilli@mail.com"
+// }
 
 router.post("/", (req, res) => {
   let user = req.body;
-  console.log(user);
 
   let db = getDb();
 

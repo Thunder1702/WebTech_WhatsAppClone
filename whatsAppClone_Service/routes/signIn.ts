@@ -14,13 +14,18 @@ import { getDb } from "../db";
 router.post("/", (req, res) => {
   let user = req.body;
   let db = getDb();
+  console.log(user);
 
+  if (!user.name && !user.password) {
+    res.sendStatus(403);
+    return;
+  }
   db.query("SELECT * FROM users WHERE name = $1 AND password = $2;", [
     user.name,
     user.password,
   ])
-    .then((data: any) => {
-      if ((data.rowCount = 1)) {
+    .then((data) => {
+      if (data.rowCount == 1) {
         const token = jwt.sign(
           {
             user: user.name,

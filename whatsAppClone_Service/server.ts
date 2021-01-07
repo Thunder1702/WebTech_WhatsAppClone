@@ -18,7 +18,7 @@ const options = {
 
 const sio = new SocketIOStatic.Server(server, options);
 
-// app.use(cors());
+app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 

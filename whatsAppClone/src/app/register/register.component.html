@@ -1,10 +1,15 @@
 <div class="main-wrapper" fxLayout="row" fxLayoutAlign="center center">
-
   <mat-toolbar color="green" class="app-header">
     <div><a href="#" target="_blank" class="logo">Whatsapp</a></div>
     <span class="nav-tool-items">
       <a mat-button routerLink="signin" routerLinkActive="active">Sign in</a>
-      <a mat-button mat-raised-button routerLink="register" routerLinkActive="active">Register</a>
+      <a
+        mat-button
+        mat-raised-button
+        routerLink="register"
+        routerLinkActive="active"
+        >Register</a
+      >
     </span>
   </mat-toolbar>
 
@@ -13,26 +18,44 @@
       <mat-card-title>Register</mat-card-title>
     </mat-card-header>
 
-    <form class="form">
-
+    <form class="form" (ngSubmit)="onSubmit()">
       <mat-card-content>
         <mat-form-field class="form-field">
-          <input matInput placeholder="Username" required>
+          <input
+            matInput
+            required
+            placeholder="Username"
+            [(ngModel)]="username"
+            name="username"
+          />
         </mat-form-field>
 
         <mat-form-field class="form-field">
-          <input matInput placeholder="Email" required>
+          <input
+            matInput
+            placeholder="Email"
+            required
+            [(ngModel)]="email"
+            name="email"
+          />
         </mat-form-field>
 
         <mat-form-field class="form-field">
-            <input matInput type="password" placeholder="Password" required>
-
+          <input
+            matInput
+            type="password"
+            placeholder="Password"
+            required
+            [(ngModel)]="password"
+            name="password"
+          />
         </mat-form-field>
       </mat-card-content>
 
       <!-- <button mat-stroked-button class="btn-block">Register</button> -->
-      <a mat-stroked-button class="btn-block" routerLink="mainChat" routerLinkActive="active">Sign in</a>
-
+      <button type="submit" mat-stroked-button class="btn-block">
+        Register
+      </button>
     </form>
   </mat-card>
 </div>

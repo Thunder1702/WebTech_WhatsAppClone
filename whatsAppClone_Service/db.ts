@@ -14,7 +14,6 @@ export function initDb() {
 }
 
 export function getDb(): Client {
-  console.log(client);
   if (client !== undefined) {
     return client;
   } else {

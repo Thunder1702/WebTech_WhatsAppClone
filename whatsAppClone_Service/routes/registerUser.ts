@@ -42,8 +42,9 @@ router.post("/", (req, res) => {
     .then(() => {
       db.query("INSERT INTO users VALUES ('','',$1,$2,$3);", [
         user.name,
-        user.password,
         user.email,
+
+        user.password,
       ])
         .then((data) => {
           res.status(200).json({ message: "Added row" });

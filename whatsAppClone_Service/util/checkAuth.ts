@@ -12,7 +12,7 @@ export function checkAuth(req: Request, res: Response, next: NextFunction) {
   try {
     if (!req.headers.authorization) {
       console.log("header authorization not set");
-      res.send(403);
+      res.sendStatus(403);
       return;
     }
     // bearer <asdasdAsd>

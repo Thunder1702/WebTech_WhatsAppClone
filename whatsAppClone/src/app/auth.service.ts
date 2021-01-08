@@ -1,23 +1,28 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaderResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
   login(username: string, password: string) {
     return this.http.post('http://localhost:3000/login/signin', {
-      username: username,
-      password: password,
-    });
+      "name": username,
+      "password": password,
+    }, this.httpOptions);
   }
+
   register(username: string, password: string, email: string) {
     return this.http.post('http://localhost:3000/login/register', {
-      username: username,
-      password: password,
-      email: email,
-    });
+      "name": username,
+      "password": password,
+      "email": email
+    }, this.httpOptions);
   }
 }

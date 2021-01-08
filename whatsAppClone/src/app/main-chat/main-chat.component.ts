@@ -12,16 +12,19 @@ export class MainChatComponent implements OnInit {
   user: string;
   messageList: string[] = [];
 
-  constructor(private chatService: ChatService) {}
+  constructor(private chatService: ChatService) { }
 
   sendMessage() {
-    this.chatService.sendMessage(this.newMessage);
-    this.messageList.push('me: ' + this.newMessage);
-    this.newMessage = '';
+    if (!(this.newMessage === ""||this.newMessage==null)) {
+      this.chatService.sendMessage(this.newMessage);
+      this.messageList.push('me: ' + this.newMessage);
+      this.newMessage = '';
+    }
+
   }
   ngOnInit() {
     this.chatService.getMessage().subscribe((msg) => {
-      this.messageList.push(msg.msg);
+      this.messageList.push('other contact: ' + msg.msg);
       console.log(msg);
       console.log(`from: ${msg.id}`);
     });

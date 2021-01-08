@@ -7,14 +7,14 @@
     </div>
     <div class="body">
         <div *ngFor="let message of messageList">
-            <p>{{ message }}</p>
+            <p id="message_bubble">{{ message }}</p>
         </div>
 
     </div>
     <div class="footer">
         <input [(ngModel)]="newMessage" (keyup)="$event.keyCode == 13 && sendMessage()" id="textinput"
-            placeholder=" Type a message" />
-        <button [disabled]="!newMessage" mat-mini-fab aria-label="Example icon-button with a heart icon"
+            placeholder=" Type a message" required="required" />
+        <button [disabled]=" !newMessage" mat-mini-fab aria-label="Example icon-button with a heart icon"
             (click)=" sendMessage()" class="sendbutton">
             <mat-icon>send</mat-icon>
         </button>

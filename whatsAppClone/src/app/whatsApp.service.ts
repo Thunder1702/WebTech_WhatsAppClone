@@ -89,16 +89,9 @@ export class WhatsAppService {
       return this.http.get(`${this.baseURL}/profile/${username}`);
   }
 
-  //Eventuell passwort und username als parameter schicken?
-  // signIn(user: User): Observable<any> {
-  //   return this.http.get(`${this.baseURL}/login/signIn`,user,this.httpOptions);
-  // }
-
-  signIn(name: string, password: string): Observable<any> {
-    return this.http.get(`${this.baseURL}/login/signIn/${name}/${password}`);
+  signIn(user: User): Observable<any> {
+    return this.http.post(`${this.baseURL}/login/signIn`,user,this.httpOptions);
   }
-
-
 
 
 }

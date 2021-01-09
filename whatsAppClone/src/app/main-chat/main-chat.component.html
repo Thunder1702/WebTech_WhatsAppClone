@@ -1,8 +1,13 @@
 <app-sidebar></app-sidebar>
 <section class="chat">
     <div class="header">
-        <div class="chatname">
-            {{'ROOM NAME'}}
+        <div class="chath">
+            <div class="roomname">{{'ROOM NAME'}}
+                <a mat-fab aria-label="Example icon button with a heart icon" class="button-header"
+                    routerLink="contact-page" routerLinkActive="active">
+                    <mat-icon>person_search</mat-icon>
+                </a>
+            </div>
         </div>
     </div>
     <div class="body">

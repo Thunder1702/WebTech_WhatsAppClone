@@ -3,23 +3,24 @@
 }
 
 .header {
-  height: 5%;
+  height: 10%;
   background-color: #EDEDED;
+
 }
 
-.chatname {
+.chath {
   text-align: center;
-  padding: 20px;
+
 }
 
 .body {
-  height: 90%;
+  height: 80%;
   background: url('https://i.pinimg.com/originals/85/70/f6/8570f6339d3189c96e340d47a581d3b8.jpg');
   overflow-y: scroll;
 }
 
 .footer {
-  height: 5%;
+  height: 10%;
   background: #EDEDED;
   /* align-items: center; */
   border-top: 1px solid lightgray;
@@ -34,6 +35,7 @@
   outline: none;
   border-radius: 20px;
   position: right;
+  margin-top: 30px;
 }
 
 .sendbutton {
@@ -41,7 +43,13 @@
   background-color: #075e54;
 }
 
-#message_bubble {
- 
+#message_bubble {}
+
+.button-header {
+  background-color: #075e54;
+  margin-left: 10px;
 }
 
+.roomname {
+  padding-top: 20px;
+}

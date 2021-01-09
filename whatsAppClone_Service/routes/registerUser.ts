@@ -16,11 +16,11 @@ function checkValidity(user: any, db: Client) {
   console.log(user.name);
 
   let pr = new Promise<void>((resolve, reject) => {
-    if (
+   /* if (
       typeof user.name === "string" &&
       typeof user.pasword === "string" &&
       typeof user.email === "string"
-    ) {
+    ) {*/
       db.query("SELECT * FROM users WHERE name = $1;", [user.name])
         .then((data) => {
           if (data.rowCount > 0) {
@@ -31,10 +31,10 @@ function checkValidity(user: any, db: Client) {
             resolve();
           }
         }).catch((error) => {console.log("ERROR");});
-    } else {
+    /*} else {
       console.log("Error beim Query, select hat nicht funktioniert!");
       reject();
-    }
+    }*/
   });
    return pr;
 }

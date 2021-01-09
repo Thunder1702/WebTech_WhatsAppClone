@@ -26,6 +26,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { ChatService } from './chat.service';
+import { ContactPageComponent } from './contact-page/contact-page.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { ChatService } from './chat.service';
     SidebarComponent,
     SigninComponent,
     RegisterComponent,
+    ContactPageComponent,
   ],
 
   imports: [

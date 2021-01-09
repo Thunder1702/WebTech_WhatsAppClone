@@ -8,6 +8,8 @@ import { Injectable } from '@angular/core';
 export class AuthService {
   constructor(private http: HttpClient) { }
 
+  loggedIn = false;
+
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
@@ -24,5 +26,18 @@ export class AuthService {
       "password": password,
       "email": email
     }, this.httpOptions);
+  }
+
+  isLoggedIn() {
+    return this.loggedIn;
+    console.log(this.loggedIn + "  Methode authService isLoggedIn().");
+  }
+  setLogin() {
+    this.loggedIn = true;
+    console.log(this.loggedIn + "  Methode authService setLogin().");
+  }
+  setLogout() {
+    this.loggedIn = false;
+    console.log(this.loggedIn + "  Methode authService setLogout().");
   }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ChatService } from '../chat.service';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -10,7 +11,7 @@ export class SidebarComponent implements OnInit {
 
   //chatNr = 0;
 
-  constructor(private chatService: ChatService) {
+  constructor(private chatService: ChatService, private authService: AuthService) {
   }
 
   ngOnInit(): void {
@@ -57,5 +58,11 @@ export class SidebarComponent implements OnInit {
     sel.appendChild(opt);
 
   }
+
+  logOut() {
+    this.authService.setLogout();
+    console.log("logOut because click on the back to signin button");
+  }
+ // document.getElementById("button-header").addEventListener("click", logOut);
 
 }

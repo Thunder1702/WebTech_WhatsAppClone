@@ -17,9 +17,9 @@ export class SigninComponent implements OnInit {
     private _router: Router,
     private _auth: AuthService,
     private _chat: ChatService
-  ) {}
+  ) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   onSubmit() {
     console.log(this.username);
@@ -31,6 +31,7 @@ export class SigninComponent implements OnInit {
         console.log('logged in');
         sessionStorage.setItem('token', (res as any).token);
 
+        this._auth.setLogin();
         this._chat.connect();
         this._router.navigate(['/mainChat']);
       },

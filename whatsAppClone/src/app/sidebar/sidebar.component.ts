@@ -17,11 +17,15 @@ export class SidebarComponent implements OnInit {
   ngOnInit(): void {
     document.querySelector("#create_chat").addEventListener("click", () => {
       this.createChat();
+
     });
 
     this.chatService.getNewChat().subscribe(chat => {
       console.log("got new chat" + chat.name);
       this.displayChat(chat.name + "_" + chat.id);
+    })
+    document.querySelector('#logout').addEventListener("click", () => {
+      this.logOut();
     })
   }
 
@@ -63,6 +67,6 @@ export class SidebarComponent implements OnInit {
     this.authService.setLogout();
     console.log("logOut because click on the back to signin button");
   }
- // document.getElementById("button-header").addEventListener("click", logOut);
+
 
 }

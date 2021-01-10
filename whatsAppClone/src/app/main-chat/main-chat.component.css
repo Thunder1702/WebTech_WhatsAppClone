@@ -14,6 +14,7 @@
 }
 
 .body {
+  word-break: break-all;
   height: 80%;
   background: url('https://i.pinimg.com/originals/85/70/f6/8570f6339d3189c96e340d47a581d3b8.jpg');
   overflow-y: scroll;

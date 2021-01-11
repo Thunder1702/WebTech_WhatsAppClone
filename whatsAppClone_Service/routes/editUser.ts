@@ -2,8 +2,9 @@ import express from "express";
 import { Client } from "pg";
 const router = express.Router();
 import { getDb } from "../db";
+import { checkAuth } from "../util/checkAuth";
 
-router.put("/", (req, res) => {
+router.put("/",checkAuth, (req, res) => {
   let user = req.body;
   let db = getDb();
 

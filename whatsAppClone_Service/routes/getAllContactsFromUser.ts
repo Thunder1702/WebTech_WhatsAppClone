@@ -1,9 +1,10 @@
 import express from "express";
 import { getDb } from "../db";
+import { checkAuth } from "../util/checkAuth";
 
 const router = express.Router();
 
-router.get("/:user", (req, res) => {
+router.get("/:user",checkAuth, (req, res) => {
   let db = getDb();
   let user = req.params.user;
   db.query("SELECT * FROM contact WHERE users_contact = $1;", [user])

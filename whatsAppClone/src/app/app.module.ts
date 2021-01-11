@@ -17,7 +17,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { TextFieldModule } from '@angular/cdk/text-field';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { RegisterComponent } from './register/register.component';
 import { SigninComponent } from './signin/signin.component';
 import { AngularMaterialModule } from './angular-material.module';
@@ -27,6 +27,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { ChatService } from './chat.service';
 import { ContactPageComponent } from './contact-page/contact-page.component';
+import { JwtInterceptor } from './jwtInterceptor';
+
+
 
 @NgModule({
   declarations: [
@@ -60,7 +63,7 @@ import { ContactPageComponent } from './contact-page/contact-page.component';
     ReactiveFormsModule,
     MatButtonModule,
   ],
-  providers: [ChatService],
+  providers: [ChatService,{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

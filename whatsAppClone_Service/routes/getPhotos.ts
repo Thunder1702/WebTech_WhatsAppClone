@@ -1,8 +1,9 @@
 import express from "express";
 import { getDb } from "../db";
+import { checkAuth } from "../util/checkAuth";
 const router = express.Router();
 
-router.get("/", (req, res) => {
+router.get("/",checkAuth, (req, res) => {
   let db = getDb();
   db.query("SELECT * FROM photo;")
     .then((data) => {

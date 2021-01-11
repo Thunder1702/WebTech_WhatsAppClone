@@ -9,6 +9,8 @@ const privateKEY = fs.readFileSync(
 );
 
 export function checkAuth(req: Request, res: Response, next: NextFunction) {
+  const token:any = req.headers.authorization;//.split(" ")[1];
+  console.log(req.headers);
   try {
     if (!req.headers.authorization) {
       console.log("header authorization not set");
@@ -16,11 +18,16 @@ export function checkAuth(req: Request, res: Response, next: NextFunction) {
       return;
     }
     // bearer <asdasdAsd>
-    const token = req.headers.authorization.split(" ")[1];
+    
+    console.log(token)
     // throws error if invalid
-    jwt.verify(token, privateKEY);
+    let payload = jwt.verify(token, privateKEY);
+    console.log(payload);
     next();
   } catch (err) {
-    res.send(err.message);
+    //res.send(err.message);
+    console.log(err);
+    console.log("token failede!!!!!!!!!!!!!!!!!");
+    res.status(410).json({message: " Token Expired"});
   }
 }

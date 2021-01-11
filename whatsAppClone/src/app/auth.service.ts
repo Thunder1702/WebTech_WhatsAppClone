@@ -11,7 +11,6 @@ export class AuthService {
 
   loggedIn = false;
   key = 'loginSave';
-  //sessionStorage.setItem(key,loggedIn);
 
   // httpOptions = {
   //   headers: new HttpHeaders({ 'Content-Type': 'application/json' })

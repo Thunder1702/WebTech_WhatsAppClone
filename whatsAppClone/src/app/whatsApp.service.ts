@@ -77,10 +77,6 @@ export class WhatsAppService {
 
   //User
 
-  registerUser(user: User): Observable<any> {
-      return this.http.post(`${this.baseURL}/login/register`,user);
-  }
-
   editUser(user: User): Observable<any> {
       return this.http.put(`${this.baseURL}/profile/edit`,user);
   }
@@ -88,10 +84,4 @@ export class WhatsAppService {
   getUser(username: string): Observable<any> {
       return this.http.get(`${this.baseURL}/profile/${username}`);
   }
-
-  signIn(user: User): Observable<any> {
-    return this.http.post(`${this.baseURL}/login/signIn`,user);
-  }
-
-
 }

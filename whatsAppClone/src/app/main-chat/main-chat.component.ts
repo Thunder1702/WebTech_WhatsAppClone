@@ -44,4 +44,7 @@ export class MainChatComponent implements OnInit {
       console.log(`from: ${msg.id}`);
     });
   }
+
+  //this.whatsAppService.sendMessage(message: Message); --> Message siehe Module
+  //this.whastAppService.getChatHistoryFromContactUser(username --> soll aus token geholt werden, id: string);
 }

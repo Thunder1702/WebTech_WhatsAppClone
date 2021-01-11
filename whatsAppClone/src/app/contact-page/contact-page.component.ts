@@ -12,6 +12,11 @@ export class ContactPageComponent implements OnInit {
 
   ngOnInit(): void {
     //this.whatsAppService.getAllContacts().subscribe(() => {});
+
+    //this.whatsAppService.getContact() --> am besten an server wird die id des Contact geschickt
+    //neuer request in server
+    //this.whatsAppService.getPhoto()
+    //neuer request im server
   }
 
 }

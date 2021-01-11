@@ -68,4 +68,9 @@ export class SidebarComponent implements OnInit {
     this.authService.setLogout();
     console.log("logOut because click on the back to signin button");
   }
+
+  //getAllContactsFromUser sofort bei OnInit aufrufen !!!
+  //this.whatsAppService.getAllContactsFromUser(user --> soll aus token gelesen werden);
+  //wenn contact aus liste angeklickt wird, muss mainChat benachrichtig werden und dort updaten den Chatverauf und ROOm Name
+
 }

@@ -31,18 +31,20 @@ export class MainChatComponent implements OnInit {
 
   }
   ngOnInit() {
+
+    this.chatService.connect();
    
-    this.chatService.getMessage().subscribe((msg) => { 
-    /*  let element = document.createElement("p");
-      element.innerHTML = "{{ message }}";
-      element.id="message_bubble1";
-      let div = document.getElementById("div_id");
-      element.appendChild(div);*/
-      //document.querySelector('div p').id="message_bubble2"
-      this.messageList.push('other contact: ' + msg.msg);
-      console.log(msg);
-      console.log(`from: ${msg.id}`);
-    });
+    // this.chatService.getMessage().subscribe((msg) => { 
+    // /*  let element = document.createElement("p");
+    //   element.innerHTML = "{{ message }}";
+    //   element.id="message_bubble1";
+    //   let div = document.getElementById("div_id");
+    //   element.appendChild(div);*/
+    //   //document.querySelector('div p').id="message_bubble2"
+    //   this.messageList.push('other contact: ' + msg.msg);
+    //   console.log(msg);
+    //   console.log(`from: ${msg.id}`);
+    // });
   }
 
   //this.whatsAppService.sendMessage(message: Message); --> Message siehe Module

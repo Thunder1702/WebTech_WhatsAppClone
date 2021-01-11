@@ -1,9 +1,10 @@
 import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
-import SocketIOStatic, { Socket } from "socket.io";
-
+import ws from "ws";
 import { initDb } from "./db";
+import SocketIOStatic,{ Socket } from "socket.io";
+
 let cfg = require("./config.json"); // config file
 
 const app = express();
@@ -43,6 +44,7 @@ import editUser from "./routes/editUser";
 import getUser from "./routes/getUser";
 import signIn from "./routes/signIn";
 
+
 //Contacts
 app.use("/contacts/newContact", newContact);
 app.use("/contacts/deleteContact", deleteContact);
@@ -68,7 +70,49 @@ app.use("/", (req, res) => {
 });
 
 let clientList: any[] = [];
+//let connectionTo: any[] = [];
 let chatRoomList: any[] = [];
+
+// const wsServer = new ws.Server({
+//   noServer: true
+// });
+
+
+
+// wsServer.on('connection', (socket: Socket) => {
+//   if (!getClientWithID(socket.id)) {
+//     clientList.push(socket);
+//     console.log(socket.id);
+//   }else return;
+
+//   //connectionTo[name] = socket;
+//   //connectionTo[].send();
+
+//   socket.on('sendMessage', message => {
+//     if(message === 'sendMessage'){
+//       setTimeout(() => {
+//         socket.broadcast.send("message", "Update");
+//       },1000);
+//     }
+//   });
+
+//   socket.on("disconnect", () => {
+//     let index = -1;
+
+//     for (let i = 0; i < clientList.length; i++) {
+//       if (clientList[i].id === socket.id) {
+//         index = i;
+//       }
+//     }
+//     if (index > -1) {
+//       clientList.splice(index, 1);
+//     }
+//     console.log("client disconnected - id" + socket.id);
+//     console.log("Connected Clients: " + clientList.length);
+//   });
+//   console.log("client connected - id " + socket.id);
+//   console.log("Connected Clients: " + clientList.length);
+// });
 
 let getClientWithID = (id: string) => {
   for (let i = 0; i < clientList.length; i++) {
@@ -78,49 +122,20 @@ let getClientWithID = (id: string) => {
   }
 };
 
+
 sio.on("connection", (socket: Socket) => {
-  if (!getClientWithID(socket.id)) {
+
+  if(!getClientWithID(socket.id)){
     clientList.push(socket);
+    console.log(socket.id);
+  }else return;
 
-    setTimeout(() => {
-      for (let c of chatRoomList) {
-        let chat = {
-          id: c.id,
-          name: c.name,
-        };
-        //console.log(chat);
-
-        socket.emit("newChat", chat);
-      }
-    }, 500);
-  } else return;
-
-  socket.on("sendMessage", (message) => {
-    console.log("sendMessage: " + socket.id + " : " + message);
-    let msg = {
-      id: socket.id,
-      msg: message,
-    };
-    socket.broadcast.emit("message", msg);
-  });
-
-  socket.on("createChat", (name) => {
-    let chat = {
-      id: chatRoomList.length,
-      name: name,
-    };
-    let chatName = chat.name + "_" + chat.id;
-    console.log("createChat: " + socket.id + " : " + chatName);
-
-    chatRoomList.push({
-      name: name,
-      id: chat.id,
-      clients: [],
-      messages: [],
-    });
-
-    socket.emit("newChat", chat); // chat creator
-    socket.broadcast.emit("newChat", chat); // all others
+  socket.on('sendMessage', message => {
+    if(message === 'sendMessage'){
+      setTimeout(() => {
+        socket.broadcast.send("message", "Update");
+      },1000);
+    }
   });
 
   socket.on("disconnect", () => {
@@ -137,10 +152,16 @@ sio.on("connection", (socket: Socket) => {
     console.log("client disconnected - id" + socket.id);
     console.log("Connected Clients: " + clientList.length);
   });
-
-  console.log("client connected - id" + socket.id);
+  console.log("client connected - id " + socket.id);
   console.log("Connected Clients: " + clientList.length);
+
 });
+
+// server.on('upgrade', (request: any, socket: any, head: any) => {
+//   wsServer.handleUpgrade(request, socket, head, socket => {
+//     wsServer.emit('connection', socket, request);
+//   });
+// }) ;
 
 //initialisieren wir eine Datebank, macht einen neuen Promis
 initDb().then(

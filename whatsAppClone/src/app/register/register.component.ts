@@ -32,7 +32,7 @@ export class RegisterComponent implements OnInit {
         sessionStorage.setItem('token', (res as any).token);
 
         this._auth.setLogin();
-        this._chat.connect();
+        //this._chat.connect();
         this._router.navigate(['/mainChat']);
       },
       (err) => {

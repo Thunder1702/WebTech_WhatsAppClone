@@ -14,20 +14,20 @@ export class WhatsAppService {
 
   baseURL = "http://localhost:3000";
 
-  httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-  };
+  // httpOptions = {
+  //   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  // };
 
   constructor(private http: HttpClient) { }
 
   //Contact
 
   newContact(contact: Contact): Observable<any> {
-      return this.http.post(`${this.baseURL}/contacts/newContact`,contact,this.httpOptions);
+      return this.http.post(`${this.baseURL}/contacts/newContact`,contact);
   }
 
   deleteContact(id: number, user: string): void {
-    this.http.delete(`${this.baseURL}/contacts/deleteContact/${id}/${user}`, this.httpOptions).
+    this.http.delete(`${this.baseURL}/contacts/deleteContact/${id}/${user}`).
     subscribe((res) => {
       console.log("deleted contact");
     }), (error) => {
@@ -36,7 +36,7 @@ export class WhatsAppService {
   }
 
   editContact(contact: Contact): Observable<any> {
-    return this.http.put(`${this.baseURL}/contacts/editContact`,contact,this.httpOptions);
+    return this.http.put(`${this.baseURL}/contacts/editContact`,contact);
   }
 
   getAllContacts(): Observable<any> {
@@ -58,7 +58,7 @@ export class WhatsAppService {
   }
 
   sendMessage(message: Message): Observable<any> {
-      return this.http.post(`${this.baseURL}/mainChat/sendMessage`,message,this.httpOptions);
+      return this.http.post(`${this.baseURL}/mainChat/sendMessage`,message);
   }
 
   getChatHistoryFromContactUser(user: string, id: number): Observable<any> {
@@ -68,7 +68,7 @@ export class WhatsAppService {
   //Photo
 
   uploadPhoto(photo: Photo): Observable<any> {
-      return this.http.post(`${this.baseURL}/mainChat/uploadPhoto`,photo,this.httpOptions);
+      return this.http.post(`${this.baseURL}/mainChat/uploadPhoto`,photo);
   }
 
   getAllPhotos(): Observable<any> {
@@ -78,11 +78,11 @@ export class WhatsAppService {
   //User
 
   registerUser(user: User): Observable<any> {
-      return this.http.post(`${this.baseURL}/login/register`,user,this.httpOptions);
+      return this.http.post(`${this.baseURL}/login/register`,user);
   }
 
   editUser(user: User): Observable<any> {
-      return this.http.put(`${this.baseURL}/profile/edit`,user,this.httpOptions);
+      return this.http.put(`${this.baseURL}/profile/edit`,user);
   }
 
   getUser(username: string): Observable<any> {
@@ -90,7 +90,7 @@ export class WhatsAppService {
   }
 
   signIn(user: User): Observable<any> {
-    return this.http.post(`${this.baseURL}/login/signIn`,user,this.httpOptions);
+    return this.http.post(`${this.baseURL}/login/signIn`,user);
   }
 
 

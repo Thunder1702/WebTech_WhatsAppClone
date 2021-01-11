@@ -1,6 +1,7 @@
 import express from "express";
 import { Client } from "pg";
 import { getDb } from "../db";
+import { checkAuth } from "../util/checkAuth";
 
 const router = express.Router();
 
@@ -30,7 +31,7 @@ function checkValidity(message: any, db: Client) {
   });
 }
 
-router.post("/", (req, res) => {
+router.post("/",checkAuth,(req, res) => {
   let message = req.body;
   let db = getDb();
 

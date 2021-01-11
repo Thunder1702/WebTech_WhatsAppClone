@@ -1,9 +1,10 @@
 import express from "express";
 import { getDb } from "../db";
+import { checkAuth } from "../util/checkAuth";
 
 const router = express.Router();
 
-router.get("/:user/:id", (req, res) => {
+router.get("/:user/:id",checkAuth, (req, res) => {
   let db = getDb();
   let user = req.params.user;
   let contactId = req.params.id;

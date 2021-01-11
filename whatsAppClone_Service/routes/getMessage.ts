@@ -1,9 +1,10 @@
 import express from "express";
 import { getDb } from "../db";
+import { checkAuth } from "../util/checkAuth";
 
 const router = express.Router();
 
-router.get("/:id/:user", (req, res) => {
+router.get("/:id/:user", checkAuth,(req, res) => {
   let db = getDb();
   let id = req.params.id;
   let user = req.params.user;

@@ -2,6 +2,7 @@ import express from "express";
 import { Client } from "pg";
 const router = express.Router();
 import { getDb } from "../db";
+import { checkAuth } from "../util/checkAuth";
 
 function checkIfExists(id: any, user: any, db: Client) {
   return new Promise<void>((resolve, reject) => {
@@ -22,7 +23,7 @@ function checkIfExists(id: any, user: any, db: Client) {
   });
 }
 
-router.delete("/:id/:user", (req, res) => {
+router.delete("/:id/:user",checkAuth, (req, res) => {
   let id = req.params.id;
   let user = req.params.user;
   let db = getDb();

@@ -19,7 +19,7 @@ const routes: Routes = [
   { path: 'mainChat' , component: MainChatComponent,canActivate: [SigninGuard]},
   { path: 'mainChat/logout', pathMatch: 'full', redirectTo: 'signin' },
   { path: 'mainChat/profileSite', pathMatch: 'full', redirectTo: 'profile' },
-  { path: 'profile', component: ProfileComponent},
+  { path: 'profile', component: ProfileComponent,canActivate: [SigninGuard]},
   { path: 'profile/backToMainChat' , pathMatch: 'full', redirectTo: 'mainChat'},
   { path: 'register/mainChat', pathMatch: 'full', redirectTo: 'mainChat' },
   { path: 'mainChat/contact-list', pathMatch: 'full', redirectTo: 'contact-list'},

@@ -29,8 +29,8 @@ export class AuthService {
   }
 
   isLoggedIn() {
-    return this.loggedIn;
     console.log(this.loggedIn + "  Methode authService isLoggedIn().");
+    return this.loggedIn;
   }
   setLogin() {
     this.loggedIn = true;

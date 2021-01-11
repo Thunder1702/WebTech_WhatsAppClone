@@ -31,6 +31,7 @@ export class RegisterComponent implements OnInit {
         console.log('registered succesfully');
         sessionStorage.setItem('token', (res as any).token);
 
+        this._auth.setLogin();
         this._chat.connect();
         this._router.navigate(['/mainChat']);
       },

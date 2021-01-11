@@ -16,7 +16,7 @@
 .body {
   word-break: break-all;
   height: 80%;
-  background: url('https://i.pinimg.com/originals/85/70/f6/8570f6339d3189c96e340d47a581d3b8.jpg');
+  background-image: url("/assets/Images/login-backgr.jpg");
   overflow-y: scroll;
 }
 
@@ -44,8 +44,28 @@
   background-color: #075e54;
 }
 
-#message_bubble {}
+#message_bubble1{
+  display:inline-block;
+  clear: both;
+  padding: 20px;
+  border-radius: 30px;
+  margin-bottom: 2px;
+  font-family: Helvetica, Arial, sans-serif;
+  background: #fff;
+  float: left;
+}
+#message_bubble2{
+  display:inline-block;
+  clear: both;
+  padding: 20px;
+  border-radius: 30px;
+  margin-bottom: 2px;
+  font-family: Helvetica, Arial, sans-serif;
+  background: #0078FF;
+  float: right;
+  color: white;
 
+}
 .button-header {
   background-color: #075e54;
   margin-left: 10px;

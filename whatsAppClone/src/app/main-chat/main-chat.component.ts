@@ -11,11 +11,19 @@ export class MainChatComponent implements OnInit {
   newMessage: string;
   user: string;
   messageList: string[] = [];
-
+ 
   constructor(private chatService: ChatService) { }
 
+
   sendMessage() {
+   // document.querySelector('div p').id= "message_bubble1"
+
     if (!(this.newMessage === ""||this.newMessage==null)) {
+      /*let element = document.createElement("p");
+      element.innerHTML = "{{ message }}";
+      element.id="message_bubble2";
+      let div = document.getElementById("div_id");
+      element.appendChild(div);*/
       this.chatService.sendMessage(this.newMessage);
       this.messageList.push('me: ' + this.newMessage);
       this.newMessage = '';
@@ -23,7 +31,14 @@ export class MainChatComponent implements OnInit {
 
   }
   ngOnInit() {
-    this.chatService.getMessage().subscribe((msg) => {
+   
+    this.chatService.getMessage().subscribe((msg) => { 
+    /*  let element = document.createElement("p");
+      element.innerHTML = "{{ message }}";
+      element.id="message_bubble1";
+      let div = document.getElementById("div_id");
+      element.appendChild(div);*/
+      //document.querySelector('div p').id="message_bubble2"
       this.messageList.push('other contact: ' + msg.msg);
       console.log(msg);
       console.log(`from: ${msg.id}`);

@@ -25,7 +25,8 @@ const routes: Routes = [
   { path: 'mainChat/contact-list', pathMatch: 'full', redirectTo: 'contact-list'},
   { path: 'contact-list' , component: ContactListComponent,canActivate: [SigninGuard]},
   { path: 'mainChat/contact-page', pathMatch: 'full', redirectTo: 'contact-page'},
-  { path: 'contact-page', component: ContactPageComponent,canActivate: [SigninGuard]}
+  { path: 'contact-page', component: ContactPageComponent,canActivate: [SigninGuard]},
+  { path:'contact-page/backToMainChat', pathMatch: 'full', redirectTo: 'mainChat'}
 ];
 
 @NgModule({

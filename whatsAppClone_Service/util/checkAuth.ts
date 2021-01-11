@@ -21,6 +21,8 @@ export function checkAuth(req: Request, res: Response, next: NextFunction) {
     jwt.verify(token, privateKEY);
     next();
   } catch (err) {
-    res.send(err.message);
+    //res.send(err.message);
+    console.log("token failede!!!!!!!!!!!!!!!!!");
+    res.status(410).json({message: " Token Expired"});
   }
 }

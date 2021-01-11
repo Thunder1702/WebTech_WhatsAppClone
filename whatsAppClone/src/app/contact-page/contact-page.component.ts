@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { WhatsAppService } from '../whatsApp.service';
 
 @Component({
   selector: 'app-contact-page',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContactPageComponent implements OnInit {
 
-  constructor() { }
+  constructor(private whatsAppService: WhatsAppService) { }
 
   ngOnInit(): void {
+    this.whatsAppService.getAllContacts().subscribe(() => {});
   }
 
 }

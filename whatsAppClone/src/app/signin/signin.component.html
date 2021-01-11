@@ -15,13 +15,14 @@
     <form class="form" (ngSubmit)="onSubmit()">
       <mat-card-content>
         <mat-form-field class="form-field">
-          <input matInput required placeholder="Username" [(ngModel)]="username" name="username" />
+          <input matInput required placeholder="Username" [(ngModel)]="username" name="username"  />
         </mat-form-field>
 
         <mat-form-field class="form-field">
           <input matInput type="password" required placeholder="Password" [(ngModel)]="password" name="password" />
         </mat-form-field>
       </mat-card-content>
+      <p id="log"></p>
       <button type="submit" mat-stroked-button class="btn-block">Login</button>
     </form>
   </mat-card>

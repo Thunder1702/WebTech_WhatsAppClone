@@ -6,3 +6,10 @@
 .main-wrapper{
   background-image: url("/assets/Images/login-backgr.jpg");
 }
+
+#log{
+  color: darkred;
+  text-align: center;
+  font-size: small;
+
+}

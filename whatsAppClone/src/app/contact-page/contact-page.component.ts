@@ -11,7 +11,7 @@ export class ContactPageComponent implements OnInit {
   constructor(private whatsAppService: WhatsAppService) { }
 
   ngOnInit(): void {
-    this.whatsAppService.getAllContacts().subscribe(() => {});
+    //this.whatsAppService.getAllContacts().subscribe(() => {});
   }
 
 }

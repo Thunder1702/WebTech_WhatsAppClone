@@ -41,7 +41,7 @@ export class SigninComponent implements OnInit {
       (err) => {
         console.error(err);
         //let log= console.log('Username or password is not correct');
-        let logmsg = "Username or Password is not correct";
+        let logmsg = "Username or Password is not correct. Please try again.";
         let logger= document.getElementById("log");
         
         if(this.username && this.password){

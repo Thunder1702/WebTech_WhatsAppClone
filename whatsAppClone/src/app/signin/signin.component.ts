@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { element } from 'protractor';
 import { AuthService } from '../auth.service';
 import { ChatService } from '../chat.service';
 
@@ -24,7 +25,7 @@ export class SigninComponent implements OnInit {
   onSubmit() {
     console.log(this.username);
     console.log(this.password);
-
+  
     this._auth.login(this.username, this.password).subscribe(
       (res) => {
         console.log(res);
@@ -34,10 +35,19 @@ export class SigninComponent implements OnInit {
         this._auth.setLogin();
         this._chat.connect();
         this._router.navigate(['/mainChat']);
+
+     
       },
       (err) => {
         console.error(err);
-        console.error('err login');
+        //let log= console.log('Username or password is not correct');
+        let logmsg = "Username or Password is not correct";
+        let logger= document.getElementById("log");
+        
+        if(this.username && this.password){
+         let output= logger.innerHTML = logmsg;
+        }
+       
       }
     );
   }

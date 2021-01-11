@@ -133,6 +133,7 @@ sio.on("connection", (socket: Socket) => {
   socket.on('sendMessage', message => {
     if(message === 'sendMessage'){
       setTimeout(() => {
+        console.log("Broadcast gesendet.");
         socket.broadcast.send("message", "Update");
       },1000);
     }

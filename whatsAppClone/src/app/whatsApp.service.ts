@@ -58,7 +58,8 @@ export class WhatsAppService {
   }
 
   sendMessage(message: Message): Observable<any> {
-      return this.http.post(`${this.baseURL}/mainChat/sendMessage`,message);
+    console.log("sendMessage Request from Client to Server");
+    return this.http.post(`${this.baseURL}/mainChat/sendMessage`,message);
   }
 
   getChatHistoryFromContactUser(user: string, id: number): Observable<any> {

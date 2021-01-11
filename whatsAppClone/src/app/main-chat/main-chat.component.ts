@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ChatService } from '../chat.service';
+import { Message } from '../model/message';
 
 @Component({
   selector: 'app-main-chat',
@@ -11,6 +12,7 @@ export class MainChatComponent implements OnInit {
   newMessage: string;
   user: string;
   messageList: string[] = [];
+  nM = new Message;
  
   constructor(private chatService: ChatService) { }
 
@@ -24,7 +26,13 @@ export class MainChatComponent implements OnInit {
       element.id="message_bubble2";
       let div = document.getElementById("div_id");
       element.appendChild(div);*/
-      this.chatService.sendMessage(this.newMessage);
+      this.nM.id = 100;
+      this.nM.message_from = "Larissa";
+      this.nM.message_to ="1";
+      this.nM.message_text = this.newMessage;
+      this.nM.read=false;
+
+      this.chatService.sendMessage(this.nM);
       this.messageList.push('me: ' + this.newMessage);
       this.newMessage = '';
     }

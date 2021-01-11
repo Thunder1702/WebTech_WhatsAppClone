@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { io, Socket } from 'socket.io-client';
 import { Observable } from 'rxjs';
+import { WhatsAppService } from './whatsApp.service';
+import { Message } from './model/message';
 
 @Injectable()
 export class ChatService{
   static socket: Socket;
 
-  constructor() {}
+  constructor(private whatsAppService: WhatsAppService) {}
 
   connect() {
 
@@ -29,8 +31,16 @@ export class ChatService{
     ChatService.socket.close();
   }
 
-  sendMessage(message: string) {
-    ChatService.socket.emit('sendMessage', message);
+  sendMessage(message: Message) {
+    this.whatsAppService.sendMessage(message).subscribe(
+      (res) => {
+        console.log(res);
+        console.log("Sended");
+      },(err)=>{
+        console.error(err);
+      }
+    );
+    ChatService.socket.emit('sendMessage', "sendMessage");
   }
 
   // createChat(name: string) {

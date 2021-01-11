@@ -11,8 +11,7 @@ function checkValidity(message: any, db: Client) {
       message.id &&
       message.message_to &&
       message.message_from &&
-      message.message_text &&
-      message.read
+      message.message_text 
     ) {
       db.query("SELECT * FROM message WHERE id = $1;", [message.id])
         .then((data) => {
@@ -31,10 +30,10 @@ function checkValidity(message: any, db: Client) {
   });
 }
 
-router.post("/",checkAuth,(req, res) => {
+router.post("/",(req, res) => {
   let message = req.body;
   let db = getDb();
-
+ 
   checkValidity(message, db)
     .then(() => {
       db.query("INSERT INTO message VALUES ($1,$2,$3,$4,$5);", [
@@ -45,6 +44,7 @@ router.post("/",checkAuth,(req, res) => {
         message.read,
       ])
         .then((data) => {
+          console.log ("erfolgreich hinzugefügt.");
           res.status(200).json({ message: "Added row" });
         })
         .catch((error) => {

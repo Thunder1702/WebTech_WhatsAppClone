@@ -38,7 +38,12 @@ export class RegisterComponent implements OnInit {
       (err) => {
         console.error(err);
         console.error('err register');
+        let logmsg = "This username already exists";
+        let logger= document.getElementById("log");
+        
+        if(this.username && this.password &&this.email){
+         let output= logger.innerHTML = logmsg;
       }
-    );
-  }
+    }
+    )}
 }

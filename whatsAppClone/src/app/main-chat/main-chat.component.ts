@@ -14,6 +14,7 @@ export class MainChatComponent implements OnInit {
   user: string;
   messageList: string[] = [];
   nM = new Message;
+  id: number = 0;
  
   constructor(private chatService: ChatService, private whatsAppService: WhatsAppService) { }
 
@@ -27,23 +28,23 @@ export class MainChatComponent implements OnInit {
       element.id="message_bubble2";
       let div = document.getElementById("div_id");
       element.appendChild(div);*/
-      let id:number;
       this.whatsAppService.getMaxMessageId().subscribe(
         (res) => {
           console.log("res: "+res);
-          id = parseInt(res) + 1;
-          console.log("Id++ = "+ id );
+          this.id = parseInt(res) + 1;
+          console.log("Id++ = "+ this.id );
+          this.nM.id = this.id;
+          this.nM.message_from = "Larissa";
+          this.nM.message_to ="1";
+          
+          this.chatService.sendMessage(this.nM);
+          
         }, (err) => {
           console.log(err);
         });
-      
-      this.nM.id = id;
-      this.nM.message_from = "Larissa";
-      this.nM.message_to ="1";
-      this.nM.message_text = this.newMessage;
-    
 
-      // this.chatService.sendMessage(this.nM);
+        console.log(this.newMessage);
+        this.nM.message_text = this.newMessage;
       this.messageList.push('me: ' + this.newMessage);
       this.newMessage = '';
     }

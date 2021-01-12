@@ -7,6 +7,7 @@ const router = express.Router();
 
 function checkValidity(message: any, db: Client) {
   return new Promise<void>((resolve, reject) => {
+    console.log(message);
     if (
       message.id &&
       message.message_to &&
@@ -16,6 +17,7 @@ function checkValidity(message: any, db: Client) {
       db.query("SELECT * FROM message WHERE id = $1;", [message.id])
         .then((data) => {
           if (data.rowCount > 0) {
+            console.log("Error no row found.")
             reject();
           } else {
             resolve();
@@ -25,12 +27,13 @@ function checkValidity(message: any, db: Client) {
           console.log("ERROR");
         });
     } else {
+      console.log("Error while if");
       reject();
     }
   });
 }
 
-router.post("/",(req, res) => {
+router.post("/",checkAuth,(req, res) => {
   let message = req.body;
   let db = getDb();
  

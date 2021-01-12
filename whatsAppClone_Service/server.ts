@@ -43,6 +43,10 @@ import registerUser from "./routes/registerUser";
 import editUser from "./routes/editUser";
 import getUser from "./routes/getUser";
 import signIn from "./routes/signIn";
+//Request for Max id value
+import maxMessageId from "./routes/getMaxMessageId";
+import maxPhotoId from "./routes/getMaxPhotoId";
+import maxContactId from "./routes/getMaxContactId";
 
 
 //Contacts
@@ -64,6 +68,10 @@ app.use("/login/register", registerUser);
 app.use("/login/signIn", signIn);
 app.use("/profile", getUser);
 app.use("/profile/edit", editUser);
+//Max id value
+app.use("/maxPhotoId", maxPhotoId);
+app.use("/maxContactId", maxContactId);
+app.use("/maxMessageId",maxMessageId);
 
 app.use("/", (req, res) => {
   res.send("Welcome to WhatsAppClone server");

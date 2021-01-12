@@ -62,8 +62,8 @@ export class WhatsAppService {
     return this.http.post(`${this.baseURL}/mainChat/sendMessage`,message);
   }
 
-  getChatHistoryFromContactUser(user: string, id: number): Observable<any> {
-    return this.http.get(`${this.baseURL}/mainChat/getChatHistoryUserContact/${user}/${id}`);
+  getChatHistoryFromContactUser( id: number): Observable<any> {
+    return this.http.get(`${this.baseURL}/mainChat/getChatHistoryUserContact/${id}`);
   }
  
   //Photo

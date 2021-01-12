@@ -8,7 +8,7 @@ const privateKEY = fs.readFileSync(
   "utf8"
 );
 
-export function checkAuth(req: Request, res: Response, next: NextFunction) {
+export function checkAuth(req: any, res: Response, next: NextFunction) {
   const token:any = req.headers.authorization;//.split(" ")[1];
   console.log(req.headers);
   try {
@@ -21,8 +21,9 @@ export function checkAuth(req: Request, res: Response, next: NextFunction) {
     
     console.log(token)
     // throws error if invalid
-    let payload = jwt.verify(token, privateKEY);
+    let payload: any = jwt.verify(token, privateKEY);
     console.log(payload);
+    req.user = { username: payload.user};
     next();
   } catch (err) {
     //res.send(err.message);

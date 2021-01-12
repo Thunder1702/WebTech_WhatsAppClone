@@ -4,9 +4,10 @@ import { checkAuth } from "../util/checkAuth";
 
 const router = express.Router();
 
-router.get("/:user/:id",checkAuth, (req, res) => {
+router.get("/:id",checkAuth, (req: any, res) => {
   let db = getDb();
-  let user = req.params.user;
+  let user = req.user.username;
+  console.log(user);
   let contactId = req.params.id;
   db.query(
     "SELECT m.message_text,m.message_to,m.message_from FROM contact c, message m WHERE c.users_contact = $1 AND c.id = $2 AND ((m.message_to = $3 AND m.message_from = $4) OR (m.message_to = $5 AND m.message_from = $6));",

@@ -58,12 +58,23 @@ export class MainChatComponent implements OnInit {
         if(msg === "Update"){
           this.whatsAppService.getChatHistoryFromContactUser(1).subscribe((res)=>{
             console.log(res);
+            for(msg in res){
+
+              this.messageList.push('other contact: '+ res[msg].message_text);
+              // for(let key in this.messageList){
+              //   let checkMsg: string = 'other contact: '+ res[msg].message_text;
+              //   console.log(checkMsg);
+              //   if(checkMsg !== key){
+              //     this.messageList.push('other contact: '+ res[msg].message_text);
+              //   }
+              // }
+            } 
           },(err)=>{
             console.log(err);
           })
           console.log(msg);
         }
-      this.messageList.push('other contatct: '+ msg);
+      
       
     })
     // this.chatService.getMessage().subscribe((msg) => { 

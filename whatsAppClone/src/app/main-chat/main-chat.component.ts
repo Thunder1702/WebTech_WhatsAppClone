@@ -34,8 +34,8 @@ export class MainChatComponent implements OnInit {
           this.id = parseInt(res) + 1;
           console.log("Id++ = "+ this.id );
           this.nM.id = this.id;
-          this.nM.message_from = "Larissa";
-          this.nM.message_to ="1";
+          this.nM.message_from = "test0";
+          this.nM.message_to ="Larissa";
           
           this.chatService.sendMessage(this.nM);
           
@@ -56,7 +56,7 @@ export class MainChatComponent implements OnInit {
       this.chatService.getMessage().subscribe((msg) => {
 
         if(msg === "Update"){
-          this.whatsAppService.getChatHistoryFromContactUser(1).subscribe((res)=>{
+          this.whatsAppService.getChatHistoryFromContactUser("test0").subscribe((res)=>{
             console.log(res);
             for(msg in res){
 

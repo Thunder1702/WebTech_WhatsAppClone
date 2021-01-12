@@ -29,6 +29,7 @@ import deleteContact from "./routes/deleteContact";
 import editContact from "./routes/editContact";
 import getContacts from "./routes/getContacts";
 import getAllContactsFromUser from "./routes/getAllContactsFromUser";
+import getUsernameFromContact from './routes/getUsernameFromContact';
 //Eventuel in eine route --> Message und dort ob GET oder POST Befehl kommt
 //Requests for Messages
 import sendMessage from "./routes/sendMessage";
@@ -55,6 +56,7 @@ app.use("/contacts/deleteContact", deleteContact);
 app.use("/contacts/editContact", editContact);
 app.use("/contacts/getContacts", getContacts);
 app.use("/contacts/getAllContactsFromUser", getAllContactsFromUser);
+app.use("/contacts/getUsernameFromContact", getUsernameFromContact);
 //Message
 app.use("/mainChat/sendMessage", sendMessage);
 app.use("/mainChat/getMessage", getMessage);

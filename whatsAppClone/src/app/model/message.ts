@@ -3,5 +3,4 @@ export class Message{
     message_to: string;
     message_from: string;
     message_text: string;
-    read: boolean;
 }

@@ -36,12 +36,11 @@ router.post("/",(req, res) => {
  
   checkValidity(message, db)
     .then(() => {
-      db.query("INSERT INTO message VALUES ($1,$2,$3,$4,$5);", [
+      db.query("INSERT INTO message VALUES ($1,$2,$3,$4);", [
         message.id,
         message.message_to,
         message.message_from,
         message.message_text,
-        message.read,
       ])
         .then((data) => {
           console.log ("erfolgreich hinzugefügt.");

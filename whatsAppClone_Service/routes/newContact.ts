@@ -8,15 +8,14 @@ const router = express.Router();
 function checkValidity(contact: any, db: Client) {
   return new Promise<void>((resolve, reject) => {
     if (
-      contact.id &&
       contact.phone_number &&
       contact.first_name &&
       contact.last_name &&
       contact.email &&
-      contact.users_contact
+      contact.users_contact &&
+      contact.contact_username
     ) {
-      db.query("SELECT * FROM contact WHERE id = $1 OR phone_number = $2;", [
-        contact.id,
+      db.query("SELECT * FROM contact WHERE phone_number = $1;", [
         contact.phone_number,
       ])
         .then((data) => {
@@ -42,12 +41,12 @@ router.post("/", checkAuth,(req, res) => {
   checkValidity(contact, db)
     .then(() => {
       db.query("INSERT INTO contact VALUES ($1,$2,$3,$4,$5,$6);", [
-        contact.id,
         contact.first_name,
         contact.last_name,
         contact.email,
         contact.phone_number,
         contact.users_contact,
+        contact.contact_username
       ])
         .then((data) => {
           res.status(200).json({ message: "Added row" });
@@ -59,7 +58,7 @@ router.post("/", checkAuth,(req, res) => {
     .catch((error) => {
       res
         .status(404)
-        .json({ message: "Row allready exists with this id or phone_number." });
+        .json({ message: "Row allready exists with this phone_number." });
     });
 });
 

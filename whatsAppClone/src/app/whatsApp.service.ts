@@ -47,6 +47,10 @@ export class WhatsAppService {
     return this.http.get(`${this.baseURL}/contacts/getAllContactsFromUser/${user}`);
   }
 
+  getUsernameFromContact(email: string): Observable<any> {
+    return this.http.get(`${this.baseURL}/contacts/getUsernameFromContact/${email}`);
+  }
+
   //Message 
 
   getAllMessages(): Observable<any> {
@@ -62,8 +66,8 @@ export class WhatsAppService {
     return this.http.post(`${this.baseURL}/mainChat/sendMessage`,message);
   }
 
-  getChatHistoryFromContactUser( id: number): Observable<any> {
-    return this.http.get(`${this.baseURL}/mainChat/getChatHistoryUserContact/${id}`);
+  getChatHistoryFromContactUser( contactUsername: string): Observable<any> {
+    return this.http.get(`${this.baseURL}/mainChat/getChatHistoryUserContact/${contactUsername}`);
   }
  
   //Photo

@@ -85,4 +85,17 @@ export class WhatsAppService {
   getUser(username: string): Observable<any> {
       return this.http.get(`${this.baseURL}/profile/${username}`);
   }
+
+  //Max id value
+
+  getMaxMessageId(): Observable<any> {
+    return this.http.get(`${this.baseURL}/maxMessageId`);
+  }
+
+  getMaxPhotoId(): Observable<any> {
+    return this.http.get(`${this.baseURL}/maxPhotoId`);
+  }
+  getMaxContactId(): Observable<any> {
+    return this.http.get(`${this.baseURL}/maxContactId`);
+  }
 }

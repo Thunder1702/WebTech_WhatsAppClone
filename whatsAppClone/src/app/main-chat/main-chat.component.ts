@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ChatService } from '../chat.service';
 import { Message } from '../model/message';
+import { WhatsAppService } from '../whatsApp.service';
 
 @Component({
   selector: 'app-main-chat',
@@ -14,7 +15,7 @@ export class MainChatComponent implements OnInit {
   messageList: string[] = [];
   nM = new Message;
  
-  constructor(private chatService: ChatService) { }
+  constructor(private chatService: ChatService, private whatsAppService: WhatsAppService) { }
 
 
   sendMessage() {
@@ -26,13 +27,23 @@ export class MainChatComponent implements OnInit {
       element.id="message_bubble2";
       let div = document.getElementById("div_id");
       element.appendChild(div);*/
-      this.nM.id = 100;
+      let id:number;
+      this.whatsAppService.getMaxMessageId().subscribe(
+        (res) => {
+          console.log("res: "+res);
+          id = parseInt(res) + 1;
+          console.log("Id++ = "+ id );
+        }, (err) => {
+          console.log(err);
+        });
+      
+      this.nM.id = id;
       this.nM.message_from = "Larissa";
       this.nM.message_to ="1";
       this.nM.message_text = this.newMessage;
-      this.nM.read=false;
+    
 
-      this.chatService.sendMessage(this.nM);
+      // this.chatService.sendMessage(this.nM);
       this.messageList.push('me: ' + this.newMessage);
       this.newMessage = '';
     }

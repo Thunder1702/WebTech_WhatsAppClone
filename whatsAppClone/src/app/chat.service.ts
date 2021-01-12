@@ -47,13 +47,14 @@ export class ChatService{
   //   ChatService.socket.emit('createChat', name);
   // }
 
-  // getMessage(): Observable<{ id: string; msg: string }> {
-  //   return Observable.create((observer) => {
-  //     ChatService.socket.on('message', (msg: string) => {
-  //       observer.next(msg);
-  //     });
-  //   });
-  // }
+  getMessage(): Observable<any> {
+    return Observable.create((observer) => {
+      ChatService.socket.on('message', (msg: string) => {
+        console.log("On Client from Server: "+ msg);
+        observer.next(msg);
+      });
+    });
+  }
 
   // getNewChat(): Observable<{ id: number; name: string }> {
   //   return Observable.create((observer) => {

@@ -43,8 +43,7 @@ export class MainChatComponent implements OnInit {
           console.log(err);
         });
 
-        console.log(this.newMessage);
-        this.nM.message_text = this.newMessage;
+      this.nM.message_text = this.newMessage;
       this.messageList.push('me: ' + this.newMessage);
       this.newMessage = '';
     }
@@ -53,7 +52,20 @@ export class MainChatComponent implements OnInit {
   ngOnInit() {
 
     this.chatService.connect();
-   
+    
+      this.chatService.getMessage().subscribe((msg) => {
+
+        if(msg === "Update"){
+          this.whatsAppService.getChatHistoryFromContactUser(1).subscribe((res)=>{
+            console.log(res);
+          },(err)=>{
+            console.log(err);
+          })
+          console.log(msg);
+        }
+      this.messageList.push('other contatct: '+ msg);
+      
+    })
     // this.chatService.getMessage().subscribe((msg) => { 
     // /*  let element = document.createElement("p");
     //   element.innerHTML = "{{ message }}";
@@ -67,6 +79,5 @@ export class MainChatComponent implements OnInit {
     // });
   }
 
-  //this.whatsAppService.sendMessage(message: Message); --> Message siehe Module
   //this.whastAppService.getChatHistoryFromContactUser(username --> soll aus token geholt werden, id: string);
 }

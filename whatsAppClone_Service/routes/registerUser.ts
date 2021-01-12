@@ -18,7 +18,7 @@ function checkValidity(user: any, db: Client) {
   let pr = new Promise<void>((resolve, reject) => {
     if (
       user.name && user.password && user.email) {
-      db.query("SELECT * FROM users WHERE name = $1;", [user.name])
+      db.query("SELECT * FROM users WHERE name = $1 OR email = $2;", [user.name, user.email])
         .then((data) => {
           if (data.rowCount > 0) {
             console.log("Bekommt mehr als eine Zeile zurück.");
@@ -70,7 +70,7 @@ router.post("/", (req, res) => {
         });
     })
     .catch((error: any) => {
-      res.status(404).json({ message: "Username allready exists." });
+      res.status(404).json({ message: "Username or email allready exists." });
     });
 });
 

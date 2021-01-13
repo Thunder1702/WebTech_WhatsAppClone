@@ -6,6 +6,8 @@ import jwt from "jsonwebtoken";
 import fs from "fs";
 import path from "path";
 
+const bcrypt = require('bcrypt');
+
 const privateKEY = fs.readFileSync(
   path.join(__dirname, "../private.key"),
   "utf8"
@@ -13,11 +15,12 @@ const privateKEY = fs.readFileSync(
 
 function checkValidity(user: any, db: Client) {
 
-  console.log(user.name);
+
 
   let pr = new Promise<void>((resolve, reject) => {
     if (
       user.name && user.password && user.email) {
+
       db.query("SELECT * FROM users WHERE name = $1 OR email = $2;", [user.name, user.email])
         .then((data) => {
           if (data.rowCount > 0) {
@@ -44,30 +47,42 @@ router.post("/", (req, res) => {
 
   checkValidity(user, db)
     .then(() => {
-      db.query("INSERT INTO users VALUES ('','',$1,$2,$3);", [
-        user.name,
-        user.password,
-        user.email
+      bcrypt.hash(user.password, 10, (err: any, hash: any) => {
+        if (err) {
+          console.log(err);
+        } else {
+          user.password = hash;
+          db.query("INSERT INTO users VALUES ('','',$1,$2,$3);", [
+            user.name,
+            user.password,
+            user.email
 
-      ])
-        .then((data) => {
-          const token = jwt.sign(
-            {
-              user: user.name,
-            },
-            privateKEY,
-            {
-              expiresIn: "1h",
-            }
-          );
-          //res.status(200).json({ message: "Added row" });
-          res.json({
-            token: token,
-          });
-        })
-        .catch((error) => {
-          res.status(404).json({ message: "Problems" });
-        });
+          ])
+            .then((data) => {
+              const token = jwt.sign(
+                {
+                  user: user.name,
+                },
+                privateKEY,
+                {
+                  expiresIn: "1h",
+                }
+              );
+              //res.status(200).json({ message: "Added row" });
+              res.json({
+                token: token,
+              });
+            })
+            .catch((error) => {
+              res.status(404).json({ message: "Problems" });
+            });
+          //console.log(hash);
+          // console.log(user.password);
+        }
+
+      });
+
+
     })
     .catch((error: any) => {
       res.status(404).json({ message: "Username or email allready exists." });

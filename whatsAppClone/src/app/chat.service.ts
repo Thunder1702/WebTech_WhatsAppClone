@@ -3,7 +3,6 @@ import { io, Socket } from 'socket.io-client';
 import { Observable } from 'rxjs';
 import { WhatsAppService } from './whatsApp.service';
 import { Message } from './model/message';
-import { MainChatComponent } from './main-chat/main-chat.component';
 
 @Injectable()
 export class ChatService{

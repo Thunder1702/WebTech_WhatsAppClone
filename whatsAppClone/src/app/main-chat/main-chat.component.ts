@@ -55,7 +55,7 @@ export class MainChatComponent implements OnInit {
   }
   ngOnInit() {
 
-    this.chatService.connect();
+    //this.chatService.connect();
     
       this.chatService.getMessage().subscribe((msg) => {
 

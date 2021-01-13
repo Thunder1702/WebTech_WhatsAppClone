@@ -10,7 +10,7 @@ const privateKEY = fs.readFileSync(
 
 export function checkAuth(req: any, res: Response, next: NextFunction) {
   const token:any = req.headers.authorization;//.split(" ")[1];
-  console.log(req.headers);
+  //console.log(req.headers);
   try {
     if (!req.headers.authorization) {
       console.log("header authorization not set");
@@ -19,10 +19,10 @@ export function checkAuth(req: any, res: Response, next: NextFunction) {
     }
     // bearer <asdasdAsd>
     
-    console.log(token)
+    //console.log(token)
     // throws error if invalid
     let payload: any = jwt.verify(token, privateKEY);
-    console.log(payload);
+    //console.log(payload);
     req.user = { username: payload.user};
     next();
   } catch (err) {

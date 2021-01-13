@@ -3,6 +3,8 @@ import jwt from "jsonwebtoken";
 import fs from "fs";
 import path from "path";
 
+const bcrypt = require('bcrypt');
+
 const privateKEY = fs.readFileSync(
   path.join(__dirname, "../private.key"),
   "utf8"
@@ -20,12 +22,15 @@ router.post("/", (req, res) => {
     res.sendStatus(403);
     return;
   }
-  db.query("SELECT * FROM users WHERE name = $1 AND password = $2;", [
-    user.name,
-    user.password,
-  ])
-    .then((data) => {
-      if (data.rowCount == 1) {
+  db.query("SELECT * FROM users WHERE name = $1", [
+    user.name
+  ]).then((data) => {
+    console.log(user.password);
+    bcrypt.compare(user.password, data.rows[0].password,(err: any, response: any) => {
+      if (err) {
+        console.log(err);
+        res.status(404).json({ message: "false" });
+      } if (res) {
         const token = jwt.sign(
           {
             user: user.name,
@@ -35,18 +40,17 @@ router.post("/", (req, res) => {
             expiresIn: "1h",
           }
         );
-
         res.json({
           token: token,
         });
-      } else {
-        res.status(404).json({ message: "false" });
       }
-    })
-    .catch((error: any) => {
-      console.log(error);
-      res.status(400).json({ message: "ERROR" });
     });
+  }).catch((error: any) => {
+    console.log(error);
+
+    res.status(400).json({ message: "ERROR" });
+  });
+
 });
 
 export default router;

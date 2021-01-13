@@ -15,6 +15,7 @@ export class MainChatComponent implements OnInit {
   messageList: string[] = [];
   nM = new Message;
   id: number = 0;
+  roomname: string;
  
   constructor(private chatService: ChatService, private whatsAppService: WhatsAppService) { }
 
@@ -30,13 +31,13 @@ export class MainChatComponent implements OnInit {
       element.appendChild(div);*/
       this.whatsAppService.getMaxMessageId().subscribe(
         (res) => {
+          
           console.log("res: "+res);
           this.id = parseInt(res) + 1;
           console.log("Id++ = "+ this.id );
           this.nM.id = this.id;
           this.nM.message_from = "test0";
-          this.nM.message_to ="Larissa";
-          
+          this.nM.message_to =this.roomname;
           this.chatService.sendMessage(this.nM);
           
         }, (err) => {
@@ -44,7 +45,9 @@ export class MainChatComponent implements OnInit {
         });
 
       this.nM.message_text = this.newMessage;
-      this.messageList.push('me: ' + this.newMessage);
+      if(this.roomname.length !== 0){
+        this.messageList.push('me: ' + this.newMessage);
+      }
       this.newMessage = '';
     }
 
@@ -56,9 +59,10 @@ export class MainChatComponent implements OnInit {
       this.chatService.getMessage().subscribe((msg) => {
 
         if(msg === "Update"){
-          this.whatsAppService.getChatHistoryFromContactUser("test0").subscribe((res)=>{
+          this.whatsAppService.getChatHistoryFromContactUser(this.roomname).subscribe((res)=>{
             console.log(res);
-            this.messageList.push('other contact: '+ res.message_text);
+            // document.querySelector('#message_bubble1').classList.add('message_bubble2');
+            this.messageList.push(this.roomname+": "+ res.message_text);
             for(msg in res){
               // for(let key in this.messageList){
               //   let checkMsg: string = 'other contact: '+ res[msg].message_text;
@@ -88,6 +92,4 @@ export class MainChatComponent implements OnInit {
     //   console.log(`from: ${msg.id}`);
     // });
   }
-
-  //this.whastAppService.getChatHistoryFromContactUser(username --> soll aus token geholt werden, id: string);
 }

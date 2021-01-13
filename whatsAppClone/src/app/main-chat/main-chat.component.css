@@ -54,7 +54,7 @@
   background: #fff;
   float: left;
 }
-#message_bubble2{
+.message_bubble2{
   display:inline-block;
   clear: both;
   padding: 20px;

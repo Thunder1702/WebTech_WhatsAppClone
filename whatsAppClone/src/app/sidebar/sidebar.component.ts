@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ChatService } from '../chat.service';
 import { AuthService } from '../auth.service';
 import { WhatsAppService } from '../whatsApp.service';
+import { MainChatComponent } from '../main-chat/main-chat.component';
 
 @Component({
   selector: 'app-sidebar',
@@ -13,7 +14,7 @@ export class SidebarComponent implements OnInit {
   //chatNr = 0;
   contactList: string[] = [];
 
-  constructor(private chatService: ChatService, private authService: AuthService, private whatsAppService: WhatsAppService) {
+  constructor(private chatService: ChatService, private authService: AuthService, private whatsAppService: WhatsAppService,private mainChatComp: MainChatComponent) {
   }
 
   ngOnInit(): void {
@@ -32,9 +33,9 @@ export class SidebarComponent implements OnInit {
 
     this.whatsAppService.getAllContactsFromUser().subscribe((res) => {
       for(let con in res){
-        this.contactList.push(res[con].first_name + " "+ res[con].last_name);
-        console.log(res[con].first_name + " "+ res[con].last_name);
-        this.displayChat(res[con].first_name + " "+ res[con].last_name);
+        this.contactList.push(res[con].contact_username);
+        console.log(res[con].contact_username);
+        this.displayChat(res[con].contact_username);
       }
     }, (err) => {
       console.log(err);
@@ -64,7 +65,10 @@ export class SidebarComponent implements OnInit {
     opt.appendChild(document.createTextNode(name));
 
 
-    opt.addEventListener("click", () => {
+    opt.addEventListener("click", (event) => {
+      this.mainChatComp.roomname = name;
+      this.mainChatComp.messageList = [];
+      
       //TODO: join chat
       console.log("Todo: join chat");
       //console.log(opt.value.split("_")[1]);

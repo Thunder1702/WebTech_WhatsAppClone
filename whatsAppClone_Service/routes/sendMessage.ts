@@ -33,8 +33,11 @@ function checkValidity(message: any, db: Client) {
   });
 }
 
-router.post("/",checkAuth,(req, res) => {
+router.post("/",checkAuth,(req: any, res) => {
   let message = req.body;
+  let username = req.user.username;
+  message.message_from = username;
+  console.log(message.message_from);
   let db = getDb();
  
   checkValidity(message, db)

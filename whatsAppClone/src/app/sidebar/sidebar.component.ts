@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ChatService } from '../chat.service';
 import { AuthService } from '../auth.service';
+import { WhatsAppService } from '../whatsApp.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -10,8 +11,9 @@ import { AuthService } from '../auth.service';
 export class SidebarComponent implements OnInit {
 
   //chatNr = 0;
+  contactList: string[] = [];
 
-  constructor(private chatService: ChatService, private authService: AuthService) {
+  constructor(private chatService: ChatService, private authService: AuthService, private whatsAppService: WhatsAppService) {
   }
 
   ngOnInit(): void {
@@ -27,6 +29,16 @@ export class SidebarComponent implements OnInit {
     document.querySelector('#logout').addEventListener("click", () => {
       this.logOut();
     })
+
+    this.whatsAppService.getAllContactsFromUser().subscribe((res) => {
+      for(let con in res){
+        this.contactList.push(res[con].first_name + " "+ res[con].last_name);
+        console.log(res[con].first_name + " "+ res[con].last_name);
+        this.displayChat(res[con].first_name + " "+ res[con].last_name);
+      }
+    }, (err) => {
+      console.log(err);
+    });
   }
 
   // createChat() {
@@ -42,26 +54,26 @@ export class SidebarComponent implements OnInit {
 
   // }
 
-  // displayChat(name) {
-  //   // get reference to select element
-  //   var sel = document.getElementById('chat_list');
-  //   // create new option element
-  //   var opt = document.createElement('option');
+  displayChat(name) {
+    // get reference to select element
+    var sel = document.getElementById('chat_list');
+    // create new option element
+    var opt = document.createElement('option');
 
-  //   opt.value = name;
-  //   opt.appendChild(document.createTextNode(name));
+    opt.value = name;
+    opt.appendChild(document.createTextNode(name));
 
 
-  //   opt.addEventListener("click", () => {
-  //     //TODO: join chat
-  //     console.log("Todo: join chat");
-  //     console.log(opt.value.split("_")[1]);
-  //   });
+    opt.addEventListener("click", () => {
+      //TODO: join chat
+      console.log("Todo: join chat");
+      //console.log(opt.value.split("_")[1]);
+    });
 
-  //   // add opt to end of select box (sel)
-  //   sel.appendChild(opt);
+    // add opt to end of select box (sel)
+    sel.appendChild(opt);
 
-  // }
+  }
 
   logOut() {
 

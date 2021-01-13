@@ -43,8 +43,8 @@ export class WhatsAppService {
       return this.http.get(`${this.baseURL}/contacts/getContacts`);
   }
 
-  getAllContactsFromUser(user: string): Observable<any> {
-    return this.http.get(`${this.baseURL}/contacts/getAllContactsFromUser/${user}`);
+  getAllContactsFromUser(): Observable<any> {
+    return this.http.get(`${this.baseURL}/contacts/getAllContactsFromUser`);
   }
 
   getUsernameFromContact(email: string): Observable<any> {

@@ -84,7 +84,6 @@ export class SidebarComponent implements OnInit {
 
     this.chatService.disconnectFromServer();
     sessionStorage.removeItem('token');
-    this.authService.setLogout();
     console.log("logOut because click on the back to signin button");
   }
 

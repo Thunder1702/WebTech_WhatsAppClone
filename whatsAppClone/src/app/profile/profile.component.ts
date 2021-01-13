@@ -19,13 +19,10 @@ export class ProfileComponent implements OnInit {
     })
   }
 
-  //this.whatsAppService.getUser()
-  //aus token wird username geholt für den request
-
   //man bekommt ein json Objekt zurück wo die ganze Zeile des users aus Tabelle users drinnen ist
   //dort kann man dann das Profilbild, denemail und Status rausholen
-  //Request für ändern des Fotos und email adresse
-  //NAME DARF NICHT GEÄNDERT WERDEN
+  //Request für ändern des Fotos 
+ 
 
   url = 'https://thumbs.dreamstime.com/b/default-avatar-profile-image-vector-social-media-user-icon-potrait-182347582.jpg';
   onselectFile(e) {

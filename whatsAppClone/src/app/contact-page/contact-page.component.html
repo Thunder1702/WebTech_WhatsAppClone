@@ -1,7 +1,7 @@
 <div id="body">
     <div id="profilecontent">
         <div id="upperborder">
-            <h1>Profile and status</h1>
+            <h1>Contact Profile Page </h1>
           <a mat-mini-fab  aria-label="Example icon button with a home icon" 
           routerLink="backToMainChat" routerLinkActive="active" class="button-header">
             <mat-icon>keyboard_arrow_left</mat-icon>
@@ -14,20 +14,20 @@
     
                 <mat-icon id="changeid">border_color</mat-icon>
             </label>
-            <input type="file" id="files" style="visibility:hidden">
+            <input type="file" id="files" style="visibility:hidden" disabled>
     
         </div>
         <br>
         <div class="div-border">
             <mat-form-field class="example-form-field">
                 <mat-label>Name</mat-label>
-                <input matInput type="text">
+                <input id="contactName" matInput type="text" disabled>
             </mat-form-field>
         </div>
         <div class="div-border">
             <mat-form-field class="example-form-field">
                 <mat-label>email</mat-label>
-                <input matInput type="text" >
+                <input id="contactEmail" matInput type="text" disabled>
             </mat-form-field>
         </div>
     </div>

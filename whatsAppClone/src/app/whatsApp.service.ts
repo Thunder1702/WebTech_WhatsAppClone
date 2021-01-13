@@ -13,6 +13,7 @@ import { User } from './model/user';
 export class WhatsAppService {
 
   baseURL = "http://localhost:3000";
+  contactUsername: string;
 
   // httpOptions = {
   //   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -49,6 +50,10 @@ export class WhatsAppService {
 
   getUsernameFromContact(email: string): Observable<any> {
     return this.http.get(`${this.baseURL}/contacts/getUsernameFromContact/${email}`);
+  }
+
+  getContact(contactUsername: string) : Observable<any> {
+    return this.http.get(`${this.baseURL}/contacts/getContact/${contactUsername}`);
   }
 
   //Message 
@@ -101,5 +106,12 @@ export class WhatsAppService {
   }
   getMaxContactId(): Observable<any> {
     return this.http.get(`${this.baseURL}/maxContactId`);
+  }
+
+  setContactUsername(name: string){
+    this.contactUsername = name;
+  }
+  getContactUsername(): string{
+    return this.contactUsername;
   }
 }

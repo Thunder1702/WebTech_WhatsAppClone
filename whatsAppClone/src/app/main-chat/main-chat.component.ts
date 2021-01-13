@@ -22,6 +22,9 @@ export class MainChatComponent implements OnInit {
 
   sendMessage() {
    // document.querySelector('div p').id= "message_bubble1"
+   if(this.roomname.length !== 0){
+        
+  
 
     if (!(this.newMessage === ""||this.newMessage==null)) {
       /*let element = document.createElement("p");
@@ -45,11 +48,9 @@ export class MainChatComponent implements OnInit {
         });
 
       this.nM.message_text = this.newMessage;
-      if(this.roomname.length !== 0){
-        this.messageList.push('me: ' + this.newMessage);
-      }
+      this.messageList.push('me: ' + this.newMessage);
       this.newMessage = '';
-    }
+    }}
 
   }
   ngOnInit() {

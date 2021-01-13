@@ -1,7 +1,7 @@
 import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
-import ws from "ws";
+//import ws from "ws";
 import { initDb } from "./db";
 import SocketIOStatic,{ Socket } from "socket.io";
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { WhatsAppService } from '../whatsApp.service';
 
 @Component({
   selector: 'app-profile',
@@ -6,10 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  value = '';
-  constructor() { }
+  constructor(private whatsAppService: WhatsAppService) { }
 
   ngOnInit(): void {
+    this.whatsAppService.getUser().subscribe((res) => {
+      console.log(res);
+      document.querySelector('#name').setAttribute('value',res[0].name);
+      document.querySelector('#email').setAttribute('value',res[0].email);
+    }, (err) => {
+      console.log(err);
+    })
   }
 
   //this.whatsAppService.getUser()

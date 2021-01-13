@@ -21,13 +21,14 @@
     <div class="div-border">
         <mat-form-field class="example-form-field">
             <mat-label>Your name</mat-label>
-            <input matInput type="text">
+            <input id="name" matInput type="text" disabled>
         </mat-form-field>
     </div>
     <div class="div-border">
         <mat-form-field class="example-form-field">
             <mat-label>Your email</mat-label>
-            <input matInput type="text" [(ngModel)]="value">
+            <input id="email" matInput type="text" 
+             disabled>
         </mat-form-field>
     </div>
 </div>

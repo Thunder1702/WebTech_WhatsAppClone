@@ -4,9 +4,9 @@ import { checkAuth } from "../util/checkAuth";
 
 const router = express.Router();
 
-router.get("/:name", checkAuth, (req, res) => {
+router.get("/", checkAuth, (req: any, res) => {
   let db = getDb();
-  let userName = req.params.name;
+  let userName = req.user.username;
   db.query("SELECT * FROM users WHERE name = $1;", [userName])
     .then((data) => {
       if ((data.rowCount = 1)) {

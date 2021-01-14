@@ -14,7 +14,7 @@ export class SidebarComponent implements OnInit {
   //chatNr = 0;
   contactList: string[] = [];
 
-  constructor(private chatService: ChatService, private authService: AuthService, private whatsAppService: WhatsAppService,private mainChatComp: MainChatComponent) {
+  constructor(private chatService: ChatService, private authService: AuthService, private whatsAppService: WhatsAppService, private mainChatComp: MainChatComponent) {
   }
 
   ngOnInit(): void {
@@ -32,7 +32,7 @@ export class SidebarComponent implements OnInit {
     })
 
     this.whatsAppService.getAllContactsFromUser().subscribe((res) => {
-      for(let con in res){
+      for (let con in res) {
         this.contactList.push(res[con].contact_username);
         console.log(res[con].contact_username);
         this.displayChat(res[con].contact_username);
@@ -44,14 +44,14 @@ export class SidebarComponent implements OnInit {
 
   // createChat() {
 
-    // create text node to add to option element (opt)
-    //let chatName = 'chat' + this.chatNr++;
+  // create text node to add to option element (opt)
+  //let chatName = 'chat' + this.chatNr++;
 
 
-    // set value property of opt
-    // this.chatService.createChat("chat");
+  // set value property of opt
+  // this.chatService.createChat("chat");
 
-    //this.displayChat(chatName);
+  //this.displayChat(chatName);
 
   // }
 
@@ -59,19 +59,20 @@ export class SidebarComponent implements OnInit {
     // get reference to select element
     var sel = document.getElementById('chat_list');
     // create new option element
-    var opt = document.createElement('option');
+    let opt = document.createElement('option');
 
     opt.value = name;
     opt.appendChild(document.createTextNode(name));
 
 
     opt.addEventListener("click", (event) => {
+      this.mainChatComp.buttondis.style.visibility = "visible";
       console.log(event.target);
       this.mainChatComp.roomname = name;
       this.mainChatComp.messageList = [];
       this.whatsAppService.setContactUsername(name);
       this.mainChatComp.setChatHistory();
-      
+
       //console.log(opt.value.split("_")[1]);
     });
 

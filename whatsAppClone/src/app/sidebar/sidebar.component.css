@@ -6,6 +6,7 @@
   /* display: flex; */
   float: left;
   background-color: white;
+  width: 25%;
 }
 
 .header {
@@ -64,4 +65,10 @@
 }
 
 
-#chat_list {}
+#chat_list {
+  font-size: 25px;
+  text-align:  center;
+  display: block;
+  padding-top: 15px;
+  
+}

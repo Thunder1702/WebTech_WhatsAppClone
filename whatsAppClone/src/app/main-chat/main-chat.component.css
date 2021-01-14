@@ -4,7 +4,7 @@
 
 .header {
   height: 10%;
-  background-color: #EDEDED;
+  background-color:  #EDEDED;
 
 }
 
@@ -16,7 +16,9 @@
 .body {
   word-break: break-all;
   height: 80%;
-  background-image: url("/assets/Images/login-backgr.jpg");
+  /*background-image: url("/assets/Images/login-backgr.jpg");*/
+  background-color: lightgray;
+  font-family: "Helvetica Neue", Helvetica;
   overflow-y: scroll;
 }
 
@@ -44,28 +46,39 @@
   background-color: #075e54;
 }
 
-#message_bubble1{
-  display:inline-block;
+#message_bubble1 {
+  float:left;
+  max-width: 75%;
+  width: auto;    
+  height: auto;
+  display: inline-block;
+  background: #ebebeb;
+  border-radius: 5px;
+  position: relative;
+  margin: 10px 0 3px 25px;   
+  box-shadow: 0px 2px 1px rgba(0, 0, 0, 0.2);
   clear: both;
   padding: 20px;
-  border-radius: 30px;
-  margin-bottom: 2px;
-  font-family: Helvetica, Arial, sans-serif;
-  background: #fff;
-  float: left;
+  border-radius: 10px;
 }
-.message_bubble2{
-  display:inline-block;
-  clear: both;
-  padding: 20px;
-  border-radius: 30px;
-  margin-bottom: 2px;
-  font-family: Helvetica, Arial, sans-serif;
-  background: #0078FF;
-  float: right;
-  color: white;
 
+#message_bubble2 {
+  float:right;
+  max-width: 75%;
+  width: auto;    
+  height: auto;
+  display: inline-block;
+  background: #DCF8C6;
+  border-radius: 5px;
+  margin-right: 30px;
+  position: relative;
+  margin: 10px 0 3px 25px;   
+  box-shadow: 0px 2px 1px rgba(0, 0, 0, 0.2);
+  clear: both;
+  padding: 20px;
+  border-radius: 10px;
 }
+
 #button-header {
   background-color: #075e54;
   margin-left: 10px;
@@ -73,4 +86,5 @@
 
 .roomname {
   padding-top: 20px;
+  font-size: 30px;
 }

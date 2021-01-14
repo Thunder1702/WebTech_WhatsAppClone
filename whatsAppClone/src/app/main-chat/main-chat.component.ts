@@ -23,17 +23,18 @@ export class MainChatComponent implements OnInit {
 
 
   sendMessage() {
-    // document.querySelector('div p').id= "message_bubble1"
+     //document.querySelector('div p').id= "message_bubble2";
     if (this.roomname.length !== 0) {
 
-
-
       if (!(this.newMessage === "" || this.newMessage == null)) {
+        //document.getElementById('message').setAttribute("class", "message_bubble1");
+        //console.log(document.getElementById('message').getAttribute("class"));
         /*let element = document.createElement("p");
         element.innerHTML = "{{ message }}";
         element.id="message_bubble2";
         let div = document.getElementById("div_id");
         element.appendChild(div);*/
+        
         this.whatsAppService.getMaxMessageId().subscribe(
           (res) => {
 
@@ -67,8 +68,13 @@ export class MainChatComponent implements OnInit {
       if (msg === "Update") {
         this.whatsAppService.getChatHistoryFromContactUser(this.roomname).subscribe((res) => {
           console.log(res);
-          // document.querySelector('#message_bubble1').classList.add('message_bubble2');
+          // 
           if (this.counter !== res[res.length - 1].id) {
+          //  document.querySelector('#message_bubble1').setAttribute('id', 'message_bubble2');
+           //document.getElementById("message_bubble1").setAttribute('id', 'message_bubble2');
+          // document.getElementById("message_bubble1").style.color = "red";
+         //document.getElementById('message').setAttribute("class", "message_bubble2");
+         //document.querySelector('message_bubble2')[0].removeAttribut("id");
             this.messageList.push(this.roomname + ": " + res[res.length - 1].message_text);
           }
 

@@ -61,8 +61,10 @@ export class SidebarComponent implements OnInit {
     // create new option element
     let opt = document.createElement('option');
 
+
     opt.value = name;
     opt.appendChild(document.createTextNode(name));
+   
 
 
     opt.addEventListener("click", (event) => {

@@ -16,6 +16,7 @@ export class MainChatComponent implements OnInit {
   nM = new Message;
   id: number = 0;
   roomname: string;
+  counter: number;
  
   constructor(private chatService: ChatService, private whatsAppService: WhatsAppService) { }
 
@@ -63,7 +64,10 @@ export class MainChatComponent implements OnInit {
           this.whatsAppService.getChatHistoryFromContactUser(this.roomname).subscribe((res)=>{
             console.log(res);
             // document.querySelector('#message_bubble1').classList.add('message_bubble2');
-            this.messageList.push(this.roomname+": "+ res.message_text);
+            if(this.counter !== res[res.length - 1].id){
+              this.messageList.push(this.roomname+": "+ res[res.length - 1].message_text);
+            }
+            
             for(msg in res){
               // for(let key in this.messageList){
               //   let checkMsg: string = 'other contact: '+ res[msg].message_text;
@@ -92,5 +96,14 @@ export class MainChatComponent implements OnInit {
     //   console.log(msg);
     //   console.log(`from: ${msg.id}`);
     // });
+  }
+
+  setChatHistory(){
+    this.whatsAppService.getChatHistoryFromContactUser(this.roomname).subscribe((res)=>{
+      for(let msg in res){
+        this.messageList.push(res[msg].message_text);
+      }
+      this.counter = res[res.length -1 ].id;
+    })
   }
 }

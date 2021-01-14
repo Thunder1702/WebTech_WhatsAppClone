@@ -15,7 +15,7 @@ router.get("/:contactUsername",checkAuth, (req: any, res) => {
   )
     .then((data) => {
       if (data.rowCount > 0) {
-        res.status(200).json(data.rows[data.rows.length - 1]);
+        res.status(200).json(data.rows);
       } else {
         res.status(404).json({ message: "No contact found." });
       }

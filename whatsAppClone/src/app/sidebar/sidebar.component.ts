@@ -69,6 +69,7 @@ export class SidebarComponent implements OnInit {
       this.mainChatComp.roomname = name;
       this.mainChatComp.messageList = [];
       this.whatsAppService.setContactUsername(name);
+      this.mainChatComp.setChatHistory();
       
       //TODO: join chat
       console.log("Todo: join chat");

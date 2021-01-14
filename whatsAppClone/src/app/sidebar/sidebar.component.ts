@@ -66,13 +66,12 @@ export class SidebarComponent implements OnInit {
 
 
     opt.addEventListener("click", (event) => {
+      console.log(event.target);
       this.mainChatComp.roomname = name;
       this.mainChatComp.messageList = [];
       this.whatsAppService.setContactUsername(name);
       this.mainChatComp.setChatHistory();
       
-      //TODO: join chat
-      console.log("Todo: join chat");
       //console.log(opt.value.split("_")[1]);
     });
 

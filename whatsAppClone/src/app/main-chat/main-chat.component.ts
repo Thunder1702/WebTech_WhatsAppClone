@@ -3,16 +3,23 @@ import { ChatService } from '../chat.service';
 import { Message } from '../model/message';
 import { WhatsAppService } from '../whatsApp.service';
 
+interface msg {
+  id: number,
+  message_text: string,
+  message_to: string,
+  message_from: string
+}
+
 @Component({
   selector: 'app-main-chat',
   templateUrl: './main-chat.component.html',
-  styleUrls: ['./main-chat.component.css'],
+  styleUrls: ['./main-chat.component.css'], 
   providers: [ChatService],
 })
 export class MainChatComponent implements OnInit {
   newMessage: string;
   user: string;
-  messageList: string[] = [];
+  messageList: msg[] = [];
   nM = new Message;
   id: number = 0;
   roomname: string;
@@ -21,20 +28,9 @@ export class MainChatComponent implements OnInit {
 
   constructor(private chatService: ChatService, private whatsAppService: WhatsAppService) { }
 
-
   sendMessage() {
-     //document.querySelector('div p').id= "message_bubble2";
     if (this.roomname.length !== 0) {
-
       if (!(this.newMessage === "" || this.newMessage == null)) {
-        //document.getElementById('message').setAttribute("class", "message_bubble1");
-        //console.log(document.getElementById('message').getAttribute("class"));
-        /*let element = document.createElement("p");
-        element.innerHTML = "{{ message }}";
-        element.id="message_bubble2";
-        let div = document.getElementById("div_id");
-        element.appendChild(div);*/
-        
         this.whatsAppService.getMaxMessageId().subscribe(
           (res) => {
 
@@ -51,69 +47,34 @@ export class MainChatComponent implements OnInit {
           });
 
         this.nM.message_text = this.newMessage;
-        this.messageList.push('me: ' + this.newMessage);
+        this.messageList.push({ message_to: this.roomname, message_from: this.user, id: 0, message_text: this.newMessage });
         this.newMessage = '';
       }
     }
-
   }
+
   ngOnInit() {
     this.buttondis = document.getElementById('button-header');
     this.buttondis.style.visibility = "hidden";
 
-    //this.chatService.connect();
-
     this.chatService.getMessage().subscribe((msg) => {
 
       if (msg === "Update") {
-        this.whatsAppService.getChatHistoryFromContactUser(this.roomname).subscribe((res) => {
-          console.log(res);
-          // 
-          if (this.counter !== res[res.length - 1].id) {
-          //  document.querySelector('#message_bubble1').setAttribute('id', 'message_bubble2');
-           //document.getElementById("message_bubble1").setAttribute('id', 'message_bubble2');
-          // document.getElementById("message_bubble1").style.color = "red";
-         //document.getElementById('message').setAttribute("class", "message_bubble2");
-         //document.querySelector('message_bubble2')[0].removeAttribut("id");
-            this.messageList.push(this.roomname + ": " + res[res.length - 1].message_text);
-          }
-
-          for (msg in res) {
-            // for(let key in this.messageList){
-            //   let checkMsg: string = 'other contact: '+ res[msg].message_text;
-            //   console.log(checkMsg);
-            //   if(checkMsg !== key){
-            //     this.messageList.push('other contact: '+ res[msg].message_text);
-            //   }
-            // }
-          }
-        }, (err) => {
-          console.log(err);
-        })
-        console.log(msg);
+        this.setChatHistory();
       }
-
-
     })
-    // this.chatService.getMessage().subscribe((msg) => { 
-    // /*  let element = document.createElement("p");
-    //   element.innerHTML = "{{ message }}";
-    //   element.id="message_bubble1";
-    //   let div = document.getElementById("div_id");
-    //   element.appendChild(div);*/
-    //   //document.querySelector('div p').id="message_bubble2"
-    //   this.messageList.push('other contact: ' + msg.msg);
-    //   console.log(msg);
-    //   console.log(`from: ${msg.id}`);
-    // });
   }
 
   setChatHistory() {
-    this.whatsAppService.getChatHistoryFromContactUser(this.roomname).subscribe((res) => {
-      for (let msg in res) {
-        this.messageList.push(res[msg].message_text);
-      }
+    this.whatsAppService.getChatHistoryFromContactUser(this.roomname).subscribe((res: msg[]) => {
+      res.forEach((message) => {
+        this.messageList.push(message);
+      });
       this.counter = res[res.length - 1].id;
     })
+  }
+
+  getData(asd: msg){
+    return JSON.stringify(asd);
   }
 }

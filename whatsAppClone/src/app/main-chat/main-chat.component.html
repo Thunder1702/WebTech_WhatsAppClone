@@ -2,7 +2,7 @@
 <section class="chat">
     <div class="header">
         <div class="chath">
-            <div class="roomname">{{roomname}}
+            <div class="roomname">{{ roomname }}
                 <a mat-fab aria-label="Example icon button with a heart icon" id="button-header"
                     routerLink="contact-page" routerLinkActive="active">
                     <mat-icon>person_search</mat-icon>
@@ -12,7 +12,8 @@
     </div>
     <div class="body">
         <div id="div_id" *ngFor="let message of messageList">
-           <p id="message_bubble2">{{ message }}</p>
+            <p *ngIf="message.message_from !== roomname" id="message_bubble2">{{ message.message_text }}</p>
+            <p *ngIf="message.message_from === roomname" id="message_bubble1">{{ message.message_text}}</p>
         </div>
 
     </div>

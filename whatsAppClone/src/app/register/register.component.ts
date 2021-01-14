@@ -37,7 +37,7 @@ export class RegisterComponent implements OnInit {
       (err) => {
         console.error(err);
         console.error('err register');
-        let logmsg = "This Username already exists. Please try another one.";
+        let logmsg = "This Username or Email already exists. Please try another one.";
         let logger= document.getElementById("log");
        
         

@@ -1,7 +1,6 @@
 import express from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
-//import ws from "ws";
 import { initDb } from "./db";
 import SocketIOStatic,{ Socket } from "socket.io";
 
@@ -85,46 +84,6 @@ let clientList: any[] = [];
 //let connectionTo: any[] = [];
 let chatRoomList: any[] = [];
 
-// const wsServer = new ws.Server({
-//   noServer: true
-// });
-
-
-
-// wsServer.on('connection', (socket: Socket) => {
-//   if (!getClientWithID(socket.id)) {
-//     clientList.push(socket);
-//     console.log(socket.id);
-//   }else return;
-
-//   //connectionTo[name] = socket;
-//   //connectionTo[].send();
-
-//   socket.on('sendMessage', message => {
-//     if(message === 'sendMessage'){
-//       setTimeout(() => {
-//         socket.broadcast.send("message", "Update");
-//       },1000);
-//     }
-//   });
-
-//   socket.on("disconnect", () => {
-//     let index = -1;
-
-//     for (let i = 0; i < clientList.length; i++) {
-//       if (clientList[i].id === socket.id) {
-//         index = i;
-//       }
-//     }
-//     if (index > -1) {
-//       clientList.splice(index, 1);
-//     }
-//     console.log("client disconnected - id" + socket.id);
-//     console.log("Connected Clients: " + clientList.length);
-//   });
-//   console.log("client connected - id " + socket.id);
-//   console.log("Connected Clients: " + clientList.length);
-// });
 
 let getClientWithID = (id: string) => {
   for (let i = 0; i < clientList.length; i++) {
@@ -170,13 +129,7 @@ sio.on("connection", (socket: Socket) => {
 
 });
 
-// server.on('upgrade', (request: any, socket: any, head: any) => {
-//   wsServer.handleUpgrade(request, socket, head, socket => {
-//     wsServer.emit('connection', socket, request);
-//   });
-// }) ;
 
-//initialisieren wir eine Datebank, macht einen neuen Promis
 initDb().then(
   () => {
     server.listen(cfg.server.port, () => {

@@ -16,8 +16,8 @@
 .body {
   word-break: break-all;
   height: 80%;
-  /*background-image: url("/assets/Images/login-backgr.jpg");*/
-  background-color: lightgray;
+  background-image: url("/assets/Images/login-backgr.jpg");
+  /*background-color: lightgray;*/
   font-family: "Helvetica Neue", Helvetica;
   overflow-y: scroll;
 }

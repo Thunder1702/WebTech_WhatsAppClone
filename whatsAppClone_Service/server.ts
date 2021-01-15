@@ -37,6 +37,8 @@ import getMessage from "./routes/getMessage";
 import getMessages from "./routes/getMessages";
 import chatHistoryUserContact from "./routes/chathistoryUserContact";
 //Requests for Photos
+import getImageUser from "./routes/getImageUser";
+import getImageContact from "./routes/getImageContact";
 import uploadPhotot from "./routes/uploadPhoto";
 import getPhotos from "./routes/getPhotos";
 //Requests for User or Profile
@@ -64,6 +66,8 @@ app.use("/mainChat/getMessage", getMessage);
 app.use("/mainChat/getMessages", getMessages);
 app.use("/mainChat/getChatHistoryUserContact", chatHistoryUserContact);
 //Photo
+app.use("/getImageUser", getImageUser);
+app.use("/getImageContact", getImageContact);
 app.use("/mainChat/uploadPhoto", uploadPhotot);
 app.use("/mainChat/getPhotos", getPhotos);
 //User or Profile
@@ -76,9 +80,18 @@ app.use("/maxPhotoId", maxPhotoId);
 app.use("/maxContactId", maxContactId);
 app.use("/maxMessageId",maxMessageId);
 
+
+app.use("/whatsAppClone_Service/profilBilder/:picName", (req, res)=> {
+  let picName = req.params.picName;
+  console.log(__dirname);
+  res.sendFile(`profilBilder/${picName}`, {root: __dirname});
+});
+
 app.use("/", (req, res) => {
   res.send("Welcome to WhatsAppClone server");
 });
+
+
 
 let clientList: any[] = [];
 //let connectionTo: any[] = [];

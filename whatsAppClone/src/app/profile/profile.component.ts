@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Photo } from '../model/photos';
 import { WhatsAppService } from '../whatsApp.service';
 
 @Component({
@@ -7,6 +8,8 @@ import { WhatsAppService } from '../whatsApp.service';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
+  url;
+  nP = new Photo;
   constructor(private whatsAppService: WhatsAppService) { }
 
   ngOnInit(): void {
@@ -16,24 +19,38 @@ export class ProfileComponent implements OnInit {
       document.querySelector('#email').setAttribute('value',res[0].email);
     }, (err) => {
       console.log(err);
-    })
+    });
+
+    this.whatsAppService.getImageUser().subscribe((res)=>{
+      console.log("res: "+res);
+      if(res === ""){
+        this.url = 'http://localhost:3000/whatsAppClone_Service/profilBilder/default.jpg';
+      }else{
+        this.url ="http://localhost:3000/whatsAppClone_Service/profilBilder/"+ res;
+      }
+    },(err)=>{
+      console.log("ERROR in getImage");
+      console.log(err);
+    });
   }
 
-  //man bekommt ein json Objekt zurück wo die ganze Zeile des users aus Tabelle users drinnen ist
-  //dort kann man dann das Profilbild, denemail und Status rausholen
-  //Request für ändern des Fotos 
- 
-
-  url = 'https://thumbs.dreamstime.com/b/default-avatar-profile-image-vector-social-media-user-icon-potrait-182347582.jpg';
+  
   onselectFile(e) {
     if (e.target.files) {
       var reader = new FileReader();
       reader.readAsDataURL(e.target.files[0]);
       reader.onload = (event: any) => {
         this.url = event.target.result;
-        console.log(e.target.files[0].name); //gibt bild_3.jpg aus 
-        //Name des Bilde als url in die Db speichern
-        //bei ngonInit einen request an server schicken, der bild zurück geben soll
+        console.log("Ausgewähltes Bild: "+e.target.files[0].name); 
+        this.nP.uploaded_by = 'username';
+        this.nP.url = e.target.files[0].name;
+        this.whatsAppService.uploadPhoto(this.nP).subscribe((res) => {
+          console.log(res);
+        }, (err) => {
+          console.log(err);
+        });
+
+      
         
       }
     }

@@ -76,6 +76,13 @@ export class WhatsAppService {
   }
  
   //Photo
+  getImageUser(): Observable<any> {
+    return this.http.get(`${this.baseURL}/getImageUser`);
+  }
+
+  getImageContact(contactUsername:string): Observable<any> {
+    return this.http.get(`${this.baseURL}/getImageContact/${contactUsername}`);
+  }
 
   uploadPhoto(photo: Photo): Observable<any> {
       return this.http.post(`${this.baseURL}/mainChat/uploadPhoto`,photo);

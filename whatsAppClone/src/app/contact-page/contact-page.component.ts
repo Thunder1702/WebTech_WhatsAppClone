@@ -8,7 +8,7 @@ import { WhatsAppService } from '../whatsApp.service';
   styleUrls: ['./contact-page.component.css']
 })
 export class ContactPageComponent implements OnInit {
-
+  url;
   contactUsername: string;
   constructor(private whatsAppService: WhatsAppService) { }
 
@@ -23,6 +23,19 @@ export class ContactPageComponent implements OnInit {
     },(err)=>{
       console.log(err);
     })
+    this.whatsAppService.getImageContact(this.contactUsername).subscribe((res)=>{
+      console.log("res: "+res);
+      if(res === ""){
+        this.url = 'http://localhost:3000/whatsAppClone_Service/profilBilder/default.jpg';
+      }else{
+        this.url ="http://localhost:3000/whatsAppClone_Service/profilBilder/"+ res;
+      }
+    },(err)=>{
+      console.log("ERROR in getImage");
+      console.log(err);
+    });
+
+
     //this.whatsAppService.getAllContacts().subscribe(() => {});
 
     //this.whatsAppService.getContact() --> am besten an server wird die id des Contact geschickt

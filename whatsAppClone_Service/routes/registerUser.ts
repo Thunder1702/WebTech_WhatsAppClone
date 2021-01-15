@@ -59,6 +59,12 @@ router.post("/", (req, res) => {
 
           ])
             .then((data) => {
+              db.query("INSERT INTO photo VALUES ('', $1);",[user.name])
+              .then((data) => {
+                console.log("Added row in table photo.")
+              }).catch((err)=>{
+                console.log(err);
+              })
               const token = jwt.sign(
                 {
                   user: user.name,

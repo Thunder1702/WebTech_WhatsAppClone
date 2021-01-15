@@ -31,6 +31,10 @@ export class ProfileComponent implements OnInit {
       reader.readAsDataURL(e.target.files[0]);
       reader.onload = (event: any) => {
         this.url = event.target.result;
+        console.log(e.target.files[0].name); //gibt bild_3.jpg aus 
+        //Name des Bilde als url in die Db speichern
+        //bei ngonInit einen request an server schicken, der bild zurück geben soll
+        
       }
     }
   }

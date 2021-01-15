@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { reduce } from 'rxjs/operators';
 import { ChatService } from '../chat.service';
 import { Message } from '../model/message';
 import { WhatsAppService } from '../whatsApp.service';
@@ -60,6 +61,14 @@ export class MainChatComponent implements OnInit {
     this.chatService.getMessage().subscribe((msg) => {
 
       if (msg === "Update") {
+        // this.whatsAppService.getChatHistoryFromContactUser(this.roomname).subscribe((res)=> {
+        //   if(this.counter !== res[res.length -1].id){
+        //     console.log("Counter :"+this.counter);
+        //     console.log("ID : "+res[res.length -1].id);
+        //     this.messageList.push({ message_to: this.user, message_from: this.roomname, id: 0, message_text:res[res.length -1 ].message_text  });
+        //   }
+        // });
+        this.messageList = [];
         this.setChatHistory();
       }
     })

@@ -25,7 +25,8 @@ const routes: Routes = [
   { path: 'contact-list' , component: ContactListComponent},
   { path: 'mainChat/contact-page', pathMatch: 'full', redirectTo: 'contact-page'},
   { path: 'contact-page', component: ContactPageComponent},
-  { path:'contact-page/backToMainChat', pathMatch: 'full', redirectTo: 'mainChat'}
+  { path:'contact-page/backToMainChat', pathMatch: 'full', redirectTo: 'mainChat'},
+  { path: 'contact-list/mainChat', pathMatch: 'full', redirectTo: 'mainChat'}
 ];
 
 @NgModule({

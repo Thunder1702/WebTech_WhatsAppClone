@@ -7,8 +7,6 @@ const router = express.Router();
 
 function checkValidity(contact: any, db: Client) {
   return new Promise<void>((resolve, reject) => {
-
-    console.log(contact.contact_username);
     if (
       contact.phone_number &&
       contact.first_name &&

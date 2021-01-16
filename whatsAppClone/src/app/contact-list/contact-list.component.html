@@ -5,21 +5,34 @@
     <mat-toolbar color="green" class="app-header">
         <div>Whatsapp</div>
         <span class="nav-tool-items">
-            <a mat-button routerLink="signin" routerLinkActive="active">Back to chat</a>
+            <a mat-button routerLink="mainChat" routerLinkActive="active">Back to chat</a>
         </span>
     </mat-toolbar>
     
         <!--     contact list   	 -->
-        <div class="col-xs-5 panel-body">
+        <div class="form">
+          <div class="contactlist">
+            <label for= "contactlist">Contacts: </label><br>
+            <select name="" id="contactlist" size="15"></select>
+          </div>
+          <div class="input">
+            <label for="first_name" style="float: left;">First Name:</label><br>
+            <input id="first_name" type="text"><br><br>
+            <label for="last_name" style="float: left;">Last Name:</label><br>
+            <input id="last_name" type="text"><br><br>
+            <label for="email" style="float: left;">E-Mail:</label><br>
+            <input id="email" type="text"><br><br>
+            <label for="phone_number" style="float: left;">Phone Number:</label><br>
+            <input id="phone_number" type="text"><br>
+          </div>
+        </div>
+        <!-- <div class="col-xs-5 panel-body">
           <ul class="list-group">
             <li class="list-group-item"> <h4>Contacts:</h4>
-              <input class="form-control" placeholder="Seach Your Contacts" type="text" ng-model="searchText">
-              <div class="contactlist">
-                <select name="" id="chat_list" size="15"></select>
-              </div>
+              
             </li>
           </ul> 
-        </div>
+        </div> -->
         
         <!--   ng-view below       -->
         <div class="col-xs-7">

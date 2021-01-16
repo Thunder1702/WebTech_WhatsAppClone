@@ -1,0 +1,16 @@
+.contactlist {
+    margin-top: 100px;
+    display: grid;
+    width: 50%;
+    padding-bottom: 10px;
+}
+
+.input {
+    text-align: right;
+    margin-left: 20px;
+    margin-top:  140px;
+}
+
+.form {
+    display: flex;
+}

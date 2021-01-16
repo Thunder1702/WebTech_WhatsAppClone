@@ -62,8 +62,8 @@ export class WhatsAppService {
     return this.http.get(`${this.baseURL}/mainChat/getMessages`);
   }
 
-  getMessageById(id: number,user: string): Observable<any> {
-      return this.http.get(`${this.baseURL}/mainChat/getMessage/${id}/${user}`);
+  getMessageById(id: number): Observable<any> {
+      return this.http.get(`${this.baseURL}/mainChat/getMessage/${id}`);
   }
 
   sendMessage(message: Message): Observable<any> {

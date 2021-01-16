@@ -61,6 +61,16 @@ export class MainChatComponent implements OnInit {
     this.chatService.getMessage().subscribe((msg) => {
 
       if (msg === "Update") {
+        // this.whatsAppService.getMaxMessageId().subscribe((res=>{
+        //   let id = parseInt(res);
+        //   this.whatsAppService.getMessageById(id).subscribe((res)=>{
+        //     console.log("Get message by id: "+res);
+        //     if(res.message_from === this.roomname){
+        //       this.messageList.push(res);
+        //     }
+            
+        //   })
+        // }));
         // this.whatsAppService.getChatHistoryFromContactUser(this.roomname).subscribe((res)=> {
         //   if(this.counter !== res[res.length -1].id){
         //     console.log("Counter :"+this.counter);

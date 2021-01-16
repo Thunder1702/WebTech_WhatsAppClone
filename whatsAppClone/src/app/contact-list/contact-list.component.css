@@ -8,9 +8,26 @@
 .input {
     text-align: right;
     margin-left: 20px;
-    margin-top:  140px;
+    margin-top:  160px;
 }
 
 .form {
+    margin-top: 20px;
     display: flex;
+}
+
+.app-header {
+    background-color:#075e54;
+    color: white;
+    padding: 50px;
+    font-size: 30px;
+}
+
+.app-header #backButton{
+    font-size: 15px;
+}
+
+#labelContactList{
+    height: 30px;
+    color: gray;
 }

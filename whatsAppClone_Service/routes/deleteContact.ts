@@ -4,32 +4,32 @@ const router = express.Router();
 import { getDb } from "../db";
 import { checkAuth } from "../util/checkAuth";
 
-function checkIfExists(id: any, user: any, db: Client) {
+function checkIfExists(user: any,contact_username:any, db: Client) {
   return new Promise<void>((resolve, reject) => {
-    db.query("SELECT * FROM contact WHERE id = $1 AND users_contact = $2;", [
-      id,
+    db.query("SELECT * FROM contact WHERE users_contact = $1 AND contact_username=$2;", [
       user,
+      contact_username
     ])
       .then((data: any) => {
-        if ((data.rowCount = 1)) {
+        if ((data.rowCount == 1)) {
           resolve();
         } else {
           reject();
         }
       })
       .catch((error) => {
-        console.log("No one with this id found in DB");
+        console.log("No contact found in DB");
       });
   });
 }
 
-router.delete("/:id/:user",checkAuth, (req, res) => {
-  let id = req.params.id;
-  let user = req.params.user;
+router.delete("/:username",checkAuth, (req: any, res) => {
+  let username = req.params.username;
+  let user = req.user.username;
   let db = getDb();
-  checkIfExists(id, user, db)
+  checkIfExists(user,username, db)
     .then(() => {
-      db.query("DELETE FROM contact WHERE id = $1", [id])
+      db.query("DELETE FROM contact WHERE users_contact = $1 AND contact_username=$2", [user,username])
         .then((data: any) => {
           res.status(200).json({ message: "Deleted row" });
         })
@@ -38,7 +38,7 @@ router.delete("/:id/:user",checkAuth, (req, res) => {
         });
     })
     .catch((error) => {
-      res.status(404).json({ message: "There exists no entry with this id." });
+      res.status(404).json({ message: "There exists no entry." });
     });
 });
 

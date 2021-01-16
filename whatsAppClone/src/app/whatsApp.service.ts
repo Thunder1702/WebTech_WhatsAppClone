@@ -27,13 +27,8 @@ export class WhatsAppService {
       return this.http.post(`${this.baseURL}/contacts/newContact`,contact);
   }
 
-  deleteContact(id: number, user: string): void {
-    this.http.delete(`${this.baseURL}/contacts/deleteContact/${id}/${user}`).
-    subscribe((res) => {
-      console.log("deleted contact");
-    }), (error) => {
-      console.log("could not delete contact");
-    };
+  deleteContact(contact_username: string): Observable<any> {
+   return this.http.delete(`${this.baseURL}/contacts/deleteContact/${contact_username}`);
   }
 
   editContact(contact: Contact): Observable<any> {

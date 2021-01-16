@@ -7,6 +7,8 @@ const router = express.Router();
 
 function checkValidity(contact: any, db: Client) {
   return new Promise<void>((resolve, reject) => {
+
+    console.log(contact.contact_username);
     if (
       contact.phone_number &&
       contact.first_name &&
@@ -15,8 +17,8 @@ function checkValidity(contact: any, db: Client) {
       contact.users_contact &&
       contact.contact_username
     ) {
-      db.query("SELECT * FROM contact WHERE phone_number = $1;", [
-        contact.phone_number,
+      db.query("SELECT * FROM contact WHERE phone_number = $1 OR email = $2;", [
+        contact.phone_number, contact.email
       ])
         .then((data) => {
           if (data.rowCount > 0) {
@@ -29,13 +31,16 @@ function checkValidity(contact: any, db: Client) {
           console.log("ERROR");
         });
     } else {
+      console.log("ERROR WHILE IF");
       reject();
     }
   });
 }
 
-router.post("/", checkAuth,(req, res) => {
+router.post("/", checkAuth,(req: any, res) => {
   let contact = req.body;
+  let user = req.user.username;
+  contact.users_contact = user;
   let db = getDb();
 
   checkValidity(contact, db)

@@ -18,7 +18,7 @@
           <div class="input">
             <mat-form-field>
               <mat-label>First Name:</mat-label>
-              <input id="first_name" matInput type="text">
+              <input id="first_name" matInput type="text" >
             </mat-form-field><br>
             <mat-form-field>
               <mat-label>Last Name:</mat-label>
@@ -26,14 +26,47 @@
             </mat-form-field><br>
             <mat-form-field>
               <mat-label>E-Mail:</mat-label>
-              <input id="email" matInput  type="text"><br>
+              <input id="email" matInput  type="text" disabled ><br>
             </mat-form-field><br>
             <mat-form-field>
               <mat-label>Phone Number:</mat-label>
-              <input id="phone_number" matInput type="text">
+              <input id="phone_number" matInput type="text" disabled>
             </mat-form-field>
           </div>
         </div>
+
+        <form class="add_contact">
+          <p id="labelAddContact">Add Contact</p>
+          <mat-form-field>
+            <mat-label>First Name:</mat-label>
+            <input id="add_first_name" matInput type="text">
+          </mat-form-field><br>
+          <mat-form-field>
+            <mat-label>Last Name:</mat-label>
+            <input id="add_last_name" matInput type="text"><br>
+          </mat-form-field><br>
+          <mat-form-field>
+            <mat-label>E-Mail:</mat-label>
+            <input id="add_email" matInput  type="text" ><br>
+          </mat-form-field><br>
+          <mat-form-field>
+            <mat-label>Phone Number:</mat-label>
+            <input id="add_phone_number" matInput type="text" >
+          </mat-form-field>
+
+        </form>
+
+        <button mat-fab aria-label="Example icon button with a heart icon" id="add" class="button-header" (click)="addContact()">
+          <mat-icon>person_add</mat-icon>
+        </button>
+        <button mat-fab aria-label="Example icon button with a heart icon" id="edit" class="button-header" (click)="editContact()">
+          <mat-icon>border_color</mat-icon>
+        </button>
+        <button mat-fab aria-label="Example icon button with a heart icon" id="delte" class="button-header" (click)="deleteContact()">
+          <mat-icon>person_remove</mat-icon>
+        </button>
+        
+        
         
        
 

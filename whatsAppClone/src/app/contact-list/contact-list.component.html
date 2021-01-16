@@ -14,7 +14,9 @@
           <ul class="list-group">
             <li class="list-group-item"> <h4>Contacts:</h4>
               <input class="form-control" placeholder="Seach Your Contacts" type="text" ng-model="searchText">
-              <contact class="list-group-item" ng-repeat="contact in contacts | orderBy: 'name' | filter: searchText "></contact>
+              <div class="contactlist">
+                <select name="" id="chat_list" size="15"></select>
+              </div>
             </li>
           </ul> 
         </div>
@@ -24,10 +26,8 @@
           <div class="list-group panel-body">
             <div ng-view></div>
           </div>
-        </div>
-          
-      </div>
-    </div>
+        </div>  
+
   
       <!--  html templates used by angular, usually in separate files -->
       <script type="text/ng-template" id="default.html">
@@ -101,4 +101,4 @@
           {{contact.name}}
         </a>
       </script>
-    </div>
+    

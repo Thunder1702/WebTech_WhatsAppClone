@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaderResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from '../environments/environment';
 //import { JwtHelperService } from 'angular-jwt';
 
 
@@ -13,14 +14,14 @@ export class AuthService {
   //   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   // };
   login(username: string, password: string) {
-    return this.http.post('http://localhost:3000/login/signin', {
+    return this.http.post(environment.baseURL+'/login/signin', {
       "name": username,
       "password": password,
     });
   }
 
   register(username: string, password: string, email: string) {
-    return this.http.post('http://localhost:3000/login/register', {
+    return this.http.post(environment.baseURL+'/login/register', {
       "name": username,
       "password": password,
       "email": email

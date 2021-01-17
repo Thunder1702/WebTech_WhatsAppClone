@@ -3,6 +3,7 @@ import { io, Socket } from 'socket.io-client';
 import { Observable } from 'rxjs';
 import { WhatsAppService } from './whatsApp.service';
 import { Message } from './model/message';
+import { environment } from '../environments/environment';
 
 @Injectable()
 export class ChatService{
@@ -17,7 +18,7 @@ export class ChatService{
     // wsSocket.onopen = function(event){
     //   console.log("connected to server !!! ");
     // }
-    ChatService.socket = io('http://localhost:3000');
+    ChatService.socket = io(environment.baseURL+'');
     return new Promise((res, rej) => {
       ChatService.socket.on('connect', () => {
         //console.log(this.myID);

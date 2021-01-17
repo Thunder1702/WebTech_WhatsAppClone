@@ -6,13 +6,14 @@ import { Contact } from './model/contact';
 import { Message } from './model/message';
 import { Photo } from './model/photos';
 import { User } from './model/user';
+import { environment } from '../environments/environment';
 
 @Injectable({
     providedIn: 'root'
   })
 export class WhatsAppService {
 
-  baseURL = "http://localhost:3000";
+  baseURL = environment.baseURL;
   contactUsername: string;
 
   // httpOptions = {

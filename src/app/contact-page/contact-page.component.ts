@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MainChatComponent } from '../main-chat/main-chat.component';
 import { WhatsAppService } from '../whatsApp.service';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-contact-page',
@@ -26,9 +27,9 @@ export class ContactPageComponent implements OnInit {
     this.whatsAppService.getImageContact(this.contactUsername).subscribe((res)=>{
       console.log("res: "+res);
       if(res === ""){
-        this.url = 'http://localhost:3000/whatsAppClone_Service/profilBilder/default.jpg';
+        this.url = environment.baseURL+'/whatsAppClone_Service/profilBilder/default.jpg';
       }else{
-        this.url ="http://localhost:3000/whatsAppClone_Service/profilBilder/"+ res;
+        this.url =environment.baseURL+"/whatsAppClone_Service/profilBilder/"+ res;
       }
     },(err)=>{
       console.log("ERROR in getImage");

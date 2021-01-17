@@ -82,8 +82,6 @@ router.post("/", (req, res) => {
             .catch((error) => {
               res.status(404).json({ message: "Problems" });
             });
-          //console.log(hash);
-          // console.log(user.password);
         }
 
       });

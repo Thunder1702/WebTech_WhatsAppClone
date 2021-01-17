@@ -97,3 +97,4 @@ export class MainChatComponent implements OnInit {
     return JSON.stringify(asd);
   }
 }
+//push correct version
